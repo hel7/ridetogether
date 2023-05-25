@@ -1,9 +1,29 @@
 import React, { useState } from 'react';
 import './App.css';
+import Datetime from 'react-datetime';
+import 'react-datetime/css/react-datetime.css';
+import moment from 'moment';
 
 function App() {
+  const [closingPopup, setClosingPopup] = useState(false);
   const [showRegisterPopup, setShowRegisterPopup] = useState(false);
   const [showLoginPopup, setShowLoginPopup] = useState(false);
+  const [selectedDate, setSelectedDate] = useState(null);
+
+  const closeRegisterPopup = () => {
+    setClosingPopup(true);
+    setTimeout(() => {
+      setShowRegisterPopup(false);
+      setClosingPopup(false);
+    }, 500);
+  };
+
+  document.onclick = (args) => {
+    if (args.target.id === 'popup-background') {
+      closeRegisterPopup();
+      closeLoginPopup();
+    }
+  };
 
   const toggleRegisterPopup = () => {
     setShowRegisterPopup(!showRegisterPopup);
@@ -13,13 +33,28 @@ function App() {
     setShowLoginPopup(!showLoginPopup);
   };
 
-  const closeLoginPopup = () => {
-    setShowLoginPopup(false);
-  };
-
   const openRegisterPopup = () => {
     setShowLoginPopup(false);
     setShowRegisterPopup(true);
+  };
+
+  const handleDateChange = (date) => {
+    const currentDate = moment();
+    const ageLimitDate = currentDate.subtract(18, 'years');
+
+    if (date.isBefore(ageLimitDate, 'day')) {
+      setSelectedDate(date);
+    } else {
+      setSelectedDate(ageLimitDate);
+    }
+  };
+
+  const closeLoginPopup = () => {
+    setClosingPopup(true);
+    setTimeout(() => {
+      setShowLoginPopup(false);
+      setClosingPopup(false);
+    }, 500);
   };
 
   return (
@@ -65,21 +100,43 @@ function App() {
         <p> © 2023 RideTogether. Всі права захищені.</p>
       </footer>
       {showRegisterPopup && (
-        <div className="popup">
-          <div className="popup-content">
+        <div
+          id="popup-background"
+          className={`popup ${
+            showRegisterPopup && !closingPopup ? 'popup-appear' : 'popup-disappear'
+          }`}
+        >
+          <div
+            className={`popup-content ${
+              showRegisterPopup && !closingPopup ? '' : 'popup-disappear'
+            }`}
+          >
             <h2>Реєстрація</h2>
             <form>
-              <label htmlFor="name">Ім'я</label>
-              <input type="text" id="name" />
-
+              <label htmlFor="login">Логін</label>
+              <input type="text" id="login" />
               <label htmlFor="email">Електронна пошта</label>
               <input type="email" id="email" />
-
+              <label htmlFor="birthdate">Дата народження</label>
+              <Datetime
+                id="birthdate"
+                value={selectedDate}
+                onChange={handleDateChange}
+                dateFormat="DD/MM/YYYY"
+                timeFormat={false}
+                closeOnSelect={true}
+                inputProps={{ readOnly: true }}
+                isValidDate={(current) => current.isBefore(moment().subtract(18, 'years'), 'day')}
+              />
               <label htmlFor="password">Пароль</label>
               <input type="password" id="password" />
+              <label htmlFor="password-repeat">Повторіть пароль</label>
+              <input type="password" id="password-repeat" />
               <div className="popup-buttons">
-                <button className="button">Зареєструватися</button>
-                <button className="closeButton" onClick={toggleRegisterPopup}>
+                <button type="button" className="button">
+                  Зареєструватися
+                </button>
+                <button type="button" className="closeButton" onClick={closeRegisterPopup}>
                   <img
                     src="https://avatanplus.com/files/resources/original/5968a2c8f2ed115d40bbe123.png"
                     width="30"
@@ -93,25 +150,35 @@ function App() {
         </div>
       )}
       {showLoginPopup && (
-        <div className="popup">
-          <div className="popup-content">
+        <div
+          id="popup-background"
+          className={`popup ${
+            showLoginPopup && !closingPopup ? 'popup-appear' : 'popup-disappear'
+          }`}
+        >
+          <div
+            className={`popup-content ${
+              showLoginPopup && !closingPopup ? '' : 'popup-disappear'
+            }`}
+          >
             <h2>Авторизація</h2>
             <form>
               <label htmlFor="login">Логін</label>
               <input type="text" id="login" />
-
               <label htmlFor="password">Пароль</label>
               <input type="password" id="password" />
               <div className="popup-buttons">
-                <button className="button">Увійти</button>
+                <button type="button" className="button">
+                  Увійти
+                </button>
                 <button className="button">Ввійти через Google</button>
-                <label htmlFor="text">
-                  Або
-                </label>
+                <div className="textCent">
+                  <label id="text">Або</label>
+                </div>
                 <button className="button" onClick={openRegisterPopup}>
                   Зареєструватися
                 </button>
-                <button className="closeButton" onClick={closeLoginPopup}>
+                <button type="button" className="closeButton" onClick={closeLoginPopup}>
                   <img
                     src="https://avatanplus.com/files/resources/original/5968a2c8f2ed115d40bbe123.png"
                     width="30"

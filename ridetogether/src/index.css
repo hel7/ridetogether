@@ -3,6 +3,7 @@ html, body {
   margin: 0;
   padding: 0;
   height: 100%;
+  font-family: Cambria, Cochin, Georgia, Times, 'Times New Roman', serif;
 }
 
 .container {
@@ -19,8 +20,9 @@ html, body {
   display: flex;
   align-items: center;
   justify-content: space-between;
+  height: 95px;
   width:100%;
-  margin: 0; /* Добавьте обнуление отступов margin */
+  margin: 0; 
 }
 
 .header-logo {
@@ -30,14 +32,14 @@ html, body {
 }
 
 .header-logo img {
-  width: 150px;
+  width: 100px;
   height: auto;
   margin-right: 5%;
 }
 
 
 .header-title {
-  font-size: 35px;
+  font-size: 28px;
 }
 
 
@@ -82,11 +84,13 @@ html, body {
 }
 
 .main-info h2 {
+  margin-bottom: 50px;
   font-size: 24px;
   text-align: center;
 }
 
 .main-info p {
+  margin-bottom: 50px;
   font-size: 18px;
 }
 
@@ -99,11 +103,11 @@ html, body {
   .main {
     flex-direction: column;
     align-items: flex-start;
+    padding-top: 20px;
   }
 
   .main-info {
     width: 100%;
-    margin-bottom: 20px;
   }
 
   .main-image {
@@ -113,7 +117,7 @@ html, body {
     position: relative;
     overflow: hidden;
   }
-  
+
   .main-image img {
     width: 100%;
     height: 100%;
@@ -122,43 +126,38 @@ html, body {
     top: 0;
     left: 0;
   }
-  
+
   .button {
     font-size: 14px;
     padding: 5px 10px;
   }
-  
+
   .header-title {
-    font-size: 22px;
-    margin-left: -5px; 
-    
+    font-size: 20px;
+    margin-left: -10px;
   }
-  
+
   .header-logo img {
     width: 80px;
     height: auto;
-    margin-right: 5px; 
-
+    margin-right: 5px;
   }
-  
+
   .header-buttons {
     gap: 3px;
-    margin-top: 10px;
-    margin-right: 5px; 
+    margin-right: 5px;
+    height: 50%;
+    margin-bottom: 50px;
   }
-  .footer p{
+
+  .footer p {
     font-size: 12px;
   }
-  .main-info h2{
+
+  .main-info h2 {
     font-size: 18px;
   }
-  .popup content{
-      width: 50%;
-  }
-  
 }
-
-
 
 .footer {
   background-color: cornflowerblue;
@@ -167,5 +166,15 @@ html, body {
   color: #FFFFFF;
   font-size: 16px;
   width:100%;
-  margin: 0; /* Добавьте обнуление отступов margin */
+  margin: 0; 
+}
+
+#text {
+  font-size: 25px;
+  font-weight: bold;
+  text-align: center;
+}
+
+.textCent{
+  text-align: center;
 }

@@ -37,6 +37,35 @@
   }
 }
 
+
+.closeButton {
+  position: absolute;
+  top: 10px;
+  right: 10px;
+  width: 30px;
+  height: 30px;
+  background-color: #8B0000;
+  border: none;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  cursor: pointer;
+}
+
+.button {
+  gap:10px;
+  margin-top: 10px; 
+  margin-bottom: 10px; 
+  margin-right: 10px; 
+  height: 40px;
+}
+
+@media (max-width: 768px) {
+  .popup-content {
+    width: 75%; 
+  }
+}
+
 .popup {
   position: fixed;
   top: 0;
@@ -47,16 +76,6 @@
   display: flex;
   justify-content: center;
   align-items: center;
-  animation: popup-appear 0.3s ease-out;
-}
-
-@keyframes popup-appear {
-  from {
-    opacity: 0;
-  }
-  to {
-    opacity: 1;
-  }
 }
 
 .popup-content {
@@ -66,15 +85,6 @@
   border-radius: 2px;
   width: 400px;
   animation: popup-slide 0.3s ease-out;
-}
-
-@keyframes popup-slide {
-  from {
-    transform: translateY(-50px);
-  }
-  to {
-    transform: translateY(0);
-  }
 }
 
 .popup h2 {
@@ -90,18 +100,22 @@
 
 .popup label {
   font-size: 16px;
+  height: 20px;
 }
 
 .popup input[type="text"],
 .popup input[type="email"],
-.popup input[type="password"] {
+.popup input[type="password"],
+.popup input[type="birthdate"] {
   padding: 8px;
   font-size: 16px;
   border-radius: 5px;
   border: 1px solid #ccc;
+  height: 25px;
 }
 
 .popup button[type="submit"] {
+  height: 40px;
   padding: 14px 20px;
   font-size: 16px;
   background-color: #0077FF;
@@ -127,7 +141,47 @@
 }
 
 .button {
-  gap:10px;
+  gap: 10px;
+  margin-top: 10px; 
   margin-bottom: 10px; 
   margin-right: 10px; 
+  height: 40px;
+}
+
+@media (max-width: 768px) {
+  .popup-content {
+    width: 75%; 
+  }
+}
+
+.popup-appear {
+  animation: popup-appear 0.5s ease-out;
+  animation-fill-mode: forwards;
+}
+
+.popup-disappear {
+  animation-fill-mode: forwards;
+  animation: popup-disappear 0.5s ease-out;
+}
+
+@keyframes popup-appear {
+  from {
+    opacity: 0;
+    transform: translateY(0);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes popup-disappear {
+  from {
+    opacity: 1;
+    transform: translateY(0);
+  }
+  to {
+    opacity: 0;
+    transform: translateY(0);
+  }
 }
