@@ -3,12 +3,55 @@ import './App.css';
 import Datetime from 'react-datetime';
 import 'react-datetime/css/react-datetime.css';
 import moment from 'moment';
+import firebase from 'firebase/compat/app';
+import 'firebase/compat/auth';
+import { getAuth, signInWithPopup, GoogleAuthProvider } from "firebase/auth";
+import { BrowserRouter as Router, Routes, Route, useNavigate } from 'react-router-dom';
+import Profile from './Profile';;
+
+
 
 function App() {
   const [closingPopup, setClosingPopup] = useState(false);
   const [showRegisterPopup, setShowRegisterPopup] = useState(false);
   const [showLoginPopup, setShowLoginPopup] = useState(false);
   const [selectedDate, setSelectedDate] = useState(null);
+  const [showPassword, setShowPassword] = useState(false);
+  const [isLoggedIn, setIsLoggedIn] = useState(false);
+  const navigate = useNavigate();
+
+
+  const firebaseConfig = {
+    apiKey: "AIzaSyBg0NFcia2pZzTqnG0yWKzPpluhFrNkvBU",
+    authDomain: "ridetogether-387812.firebaseapp.com",
+    projectId: "ridetogether-387812",
+    storageBucket: "ridetogether-387812.appspot.com",
+    messagingSenderId: "871429650227",
+    appId: "1:871429650227:web:4b438e82b65732fdda7046",
+    measurementId: "G-SY99FWBSWB"
+  };
+  
+  if (!firebase.apps.length) {
+    firebase.initializeApp(firebaseConfig);
+  } else {
+    firebase.app();
+  }
+  const handleGoogleSignIn = () => {
+    const auth = getAuth();
+    const provider = new GoogleAuthProvider();
+    signInWithPopup(auth, provider)
+      .then((result) => {
+        const user = result.user;
+        console.log('Аутентифікація успішна:', user);
+        setIsLoggedIn(true);
+        navigate('/Profile');
+      })
+      .catch((error) => {
+        console.error('Помилка аутентифікації:', error);
+      });
+  };
+  
+  
 
   const closeRegisterPopup = () => {
     setClosingPopup(true);
@@ -56,9 +99,8 @@ function App() {
       setClosingPopup(false);
     }, 500);
   };
-
   return (
-    <div className="container">
+  <div className="container">
       <header className="header">
         <div className="header-logo">
           <img src="Group 1.png" alt="Logo" />
@@ -128,14 +170,36 @@ function App() {
                 inputProps={{ readOnly: true }}
                 isValidDate={(current) => current.isBefore(moment().subtract(18, 'years'), 'day')}
               />
-              <label htmlFor="password">Пароль</label>
-              <input type="password" id="password" />
-              <label htmlFor="password-repeat">Повторіть пароль</label>
-              <input type="password" id="password-repeat" />
+             <label htmlFor="password">Пароль</label>
+             <input
+              type={showPassword ? 'text' : 'password'}
+              id="password"
+             />
+              <label htmlFor="password-repeat">
+                Повторіть пароль
+              </label>
+              <input
+                type={showPassword ? 'text' : 'password'}
+                id="password-repeat"
+              />
+
+              <label htmlFor="show-password" className="pass">
+                Показати пароль
+              <input
+                type="checkbox"
+                id="show-password"
+                onChange={() => setShowPassword(!showPassword)}
+              />
+              </label>
+
               <div className="popup-buttons">
                 <button type="button" className="button">
                   Зареєструватися
                 </button>
+                <div className="textCent">
+                  <label id="text">Або</label>
+                </div>
+                <button className="button" type="button" onClick={handleGoogleSignIn}>Зареєструватися через Google</button>
                 <button type="button" className="closeButton" onClick={closeRegisterPopup}>
                   <img
                     src="https://avatanplus.com/files/resources/original/5968a2c8f2ed115d40bbe123.png"
@@ -165,13 +229,27 @@ function App() {
             <form>
               <label htmlFor="login">Логін</label>
               <input type="text" id="login" />
-              <label htmlFor="password">Пароль</label>
-              <input type="password" id="password" />
+              <label htmlFor="password-repeat">
+                Пароль
+              </label>
+              <input
+                type={showPassword ? 'text' : 'password'}
+                id="password-repeat"
+              />
+
+              <label htmlFor="show-password" className="pass">
+                Показати пароль
+              <input
+                type="checkbox"
+                id="show-password"
+                onChange={() => setShowPassword(!showPassword)}
+              />
+              </label>
               <div className="popup-buttons">
                 <button type="button" className="button">
                   Увійти
                 </button>
-                <button className="button">Ввійти через Google</button>
+                <button className="button" type="button" onClick={handleGoogleSignIn}>Ввійти через Google</button>
                 <div className="textCent">
                   <label id="text">Або</label>
                 </div>
@@ -195,4 +273,13 @@ function App() {
   );
 }
 
-export default App;
+export default function AppWithRouter() {
+  return (
+    <Router>
+      <Routes>
+        <Route path="/" element={<App />} />
+        <Route path="/Profile" element={<Profile />} />
+      </Routes>
+    </Router>
+  );
+}

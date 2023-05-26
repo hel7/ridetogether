@@ -1,0 +1,68 @@
+.main-info-profile {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 10px;
+}
+  
+.photo-choose {
+    width: 150px;
+    height: 150px;
+    object-position: center;
+    margin-bottom: 10px;
+}
+.choose-photo-button{
+    border: none;
+}
+.choose-photo-button, .input-field,.acceptChanges {
+    margin-bottom: 10px;
+    padding: 10px 50px;
+    background-color: #003399;
+    color: #FFFFFF;
+    border-radius: 5px;
+    font-size: 16px;
+    cursor: pointer;
+    width: 250px;
+    object-position: center;
+}
+  
+.input-field {
+    height: 15px;
+    background-color: #FFFFFF;
+    color: #000000;
+    padding: 10px;
+}
+h3 {
+    margin: 0;
+    padding-bottom: 10px;
+}
+.acceptChanges{
+    border: none;
+    background-color:#6495ed;
+}
+.buttonDecine, .buttonAccept{
+    margin-bottom: 10px;
+    padding: 10px 50px;
+    border-radius: 5px;
+    font-size: 16px;
+    cursor: pointer;
+    width: 250px;
+    object-position:unset;
+    border: none;
+    color:#FFFFFF;
+}
+.buttonDecine:not(:last-child), .buttonAccept:not(:last-child) {
+    margin-right: 20px;
+}
+.buttons-container {
+    display: flex;
+    margin: 10px;
+    justify-content: space-between;
+  }
+.buttonAccept{
+    background-color: forestgreen;
+
+}
+.buttonDecine{
+    background-color: brown;
+}
