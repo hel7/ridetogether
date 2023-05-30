@@ -15,7 +15,7 @@ import CustomDrawerContent from "./CustomDrawerContent";
 const Stack = createStackNavigator();
 const Drawer = createDrawerNavigator();
 
-function Untitled(props) {
+function Untitled(props) { 
   const navigation = useNavigation();
 
   useEffect(() => {
