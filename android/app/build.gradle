@@ -109,12 +109,16 @@ def reactNativeArchitectures() {
 }
 
 android {
+     compileSdkVersion 27
+    buildToolsVersion "27.0.3"
     ndkVersion rootProject.ext.ndkVersion
 
     compileSdkVersion rootProject.ext.compileSdkVersion
 
     namespace "com.progect"
     defaultConfig {
+         targetSdkVersion 27
+        vectorDrawables.useSupportLibrary = true
         applicationId "com.progect"
         minSdkVersion rootProject.ext.minSdkVersion
         targetSdkVersion rootProject.ext.targetSdkVersion

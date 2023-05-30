@@ -1,8 +1,26 @@
-import { registerRootComponent } from 'expo';
+import React, { Component } from "react";
+import { StyleSheet, View } from "react-native";
+import CupertinoButtonInfo1 from "./components/CupertinoButtonInfo1";
 
-import App from './App';
+function Index(props) {
+  return (
+    <View style={styles.container}>
+      <CupertinoButtonInfo1
+        style={styles.cupertinoButtonInfo1}
+      ></CupertinoButtonInfo1>
+    </View>
+  );
+}
 
-// registerRootComponent calls AppRegistry.registerComponent('main', () => App);
-// It also ensures that whether you load the app in Expo Go or in a native build,
-// the environment is set up appropriately
-registerRootComponent(App);
+const styles = StyleSheet.create({
+  container: {
+    width: 92,
+    height: 27
+  },
+  cupertinoButtonInfo1: {
+    height: 27,
+    width: 92
+  }
+});
+
+export default Index;

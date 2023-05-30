@@ -1,21 +1,230 @@
-import { StatusBar } from 'expo-status-bar';
-import React from 'react';
-import { StyleSheet, Text, View } from 'react-native';
+import React, { useEffect } from "react";
+import { StyleSheet, View, Text, Image, TouchableOpacity } from "react-native";
+import { useNavigation } from "@react-navigation/native";
+import { Font } from 'expo-font';
+import { createDrawerNavigator } from '@react-navigation/drawer';
+import { NavigationContainer } from '@react-navigation/native';
+import { createStackNavigator } from '@react-navigation/stack';
+import { ScrollView } from 'react-native-gesture-handler';
+import Untitled1 from "./Untitled1";
+import Untitled2 from "./Untitled2";
+import Untitled3 from "./Untitled3";
+import Untitled4 from "./Untitled4";
+import CustomDrawerContent from "./CustomDrawerContent";
 
-export default function App() {
+const Stack = createStackNavigator();
+const Drawer = createDrawerNavigator();
+
+function Untitled(props) {
+  const navigation = useNavigation();
+
+  useEffect(() => {
+    async function loadFonts() {
+      await Font.loadAsync({
+        'roboto-700': require('./fonts/Roboto-Bold.ttf'),
+        'roboto-regular': require('./fonts/Roboto-Regular.ttf'),
+      });
+    }
+
+    loadFonts();
+  }, []);
+
   return (
     <View style={styles.container}>
-      <Text>Open up App.js to start working on your app!</Text>
-      <StatusBar style="auto" />
+      <View style={styles.rect}>
+        <View style={styles.imageStackRow}>
+          <View style={styles.imageStack}>
+            <Image
+              source={require("./assets/images/Group_1.png")}
+              resizeMode="contain"
+              style={styles.image}
+            ></Image>
+            <Text style={styles.rideTogether}>RideTogether</Text>
+          </View>
+          <View style={styles.groupColumn}>
+            <View style={styles.group}>
+              <TouchableOpacity
+                onPress={() => navigation.navigate("Untitled1")}
+                style={styles.button}
+              >
+                <Text style={styles.увійти}>Увійти</Text>
+              </TouchableOpacity>
+            </View>
+            <View style={styles.group2}>
+              <TouchableOpacity
+                onPress={() => navigation.navigate("Untitled2")}
+                style={styles.button1}
+              >
+                <Text style={styles.створитиАкаунт}>Створити акаунт</Text>
+              </TouchableOpacity>
+            </View>
+          </View>
+        </View>
+      </View>
+      <ScrollView contentContainerStyle={styles.scrollContainer}>
+        <View style={styles.loremIpsumStack}>
+          <Text style={styles.loremIpsum}>
+            Lorem Ipsum Lorem IpsumLorem IpsumLorem IpsumLorem IpsumLorem
+            IpsumLorem IpsumLorem IpsumLorem IpsumLorem IpsumLorem IpsumLorem
+            IpsumLorem IpsumLorem IpsumLorem IpsumLorem IpsumLorem IpsumLorem
+            IpsumLorem IpsumLorem IpsumLorem IpsumLorem IpsumLorem IpsumLorem
+            IpsumLorem IpsumLorem IpsumLorem IpsumLorem IpsumLorem IpsumLorem
+            IpsumLorem IpsumLorem IpsumLorem IpsumLorem IpsumLorem IpsumLorem
+            IpsumLorem IpsumLorem IpsumLorem Ipsum
+          </Text>
+          <Image
+            source={require("./assets/images/d.jpg")}
+            resizeMode="contain"
+            style={styles.image2}
+          ></Image>
+        </View>
+        <Text style={styles.loremIpsum2}>Lorem Ipsum</Text>
+        <View style={styles.group}>
+          <TouchableOpacity
+            onPress={() => navigation.navigate("Untitled3")}
+            style={styles.button}
+          >
+            <Text style={styles.увійти}>Увійти</Text>
+          </TouchableOpacity>
+        </View>
+      </ScrollView>
     </View>
   );
 }
 
+
+function App() {
+  return (
+    <NavigationContainer>
+      <Stack.Navigator>
+        <Stack.Screen name="Untitled" component={Untitled} />
+        <Stack.Screen name="Untitled1" component={Untitled1} />
+        <Stack.Screen name="Untitled2" component={Untitled2} />
+        <Stack.Screen name="Untitled3" component={DrawerRoutes}  options={{headerShown: false}}/>
+        <Stack.Screen name="Untitled4" component={DrawerRoutes}  options={{headerShown: false}}/>
+      </Stack.Navigator>
+    </NavigationContainer>
+  );
+}
+
+
+function DrawerRoutes() {
+  return (
+    <Drawer.Navigator drawerContent={props => <CustomDrawerContent {...props}/>}  initialRouteName="Untitled3" >
+      <Drawer.Screen name="Untitled3" component={Untitled3} />     
+      <Drawer.Screen name="Untitled4" component={Untitled4} />   
+    </Drawer.Navigator>
+  );
+}
+
+
+export default App;
 const styles = StyleSheet.create({
   container: {
-    flex: 1,
-    backgroundColor: '#fff',
-    alignItems: 'center',
-    justifyContent: 'center',
+    flex: 1
   },
+  rect: {
+    width: 360,
+    height: 137,
+    backgroundColor: "rgba(37,66,225,1)"
+  },
+  image: {
+    top: 0,
+    left: 0,
+    width: 115,
+    height: 98,
+    position: "absolute"
+  },
+  rideTogether: {
+          top: 37,
+      left: 102,
+      position: "absolute",
+      fontFamily: "roboto-700",
+      color: "rgba(255,255,255,1)",
+      fontSize: 20
+  },
+  imageStack: {
+    width: 238,
+    height: 98
+  },
+  group: {
+    width: 115,
+    height: 35
+  },
+  button: {
+    width: 115,
+    height: 35,
+    backgroundColor: "rgba(0,122,255,1)",
+    borderRadius: 5
+  },
+  увійти: {
+    fontFamily: "roboto-regular",
+    color: "rgba(255,255,255,1)",
+    textAlign: "center",
+    fontSize: 16,
+    marginTop: 7,
+    marginLeft: -1
+  },
+  group2: {
+    width: 115,
+    height: 35,
+    marginTop: 14
+  },
+  button1: {
+    width: 115,
+    height: 35,
+    backgroundColor: "rgba(0,122,255,1)",
+    borderRadius: 5
+  },
+  створитиАкаунт: {
+    fontFamily: "roboto-regular",
+    color: "rgba(255,255,255,1)",
+    textAlign: "center",
+    fontSize: 12,
+    marginTop: 9,
+    marginLeft: 2
+  },
+  groupColumn: {
+    width: 115,
+    marginTop: 13,
+    marginBottom: 1
+  },
+  imageStackRow: {
+    height: 98,
+    flexDirection: "row",
+    marginTop: 25,
+    marginRight: 7
+  },
+  loremIpsum: {
+    top: 0,
+    left: 19,
+    position: "absolute",
+    fontFamily: "roboto-regular",
+    color: "#121212",
+    height: 178,
+    width: 336
+  },
+  image2: {
+    top: 122,
+    left: 0,
+    width: 362,
+    height: 473,
+    position: "absolute"
+  },
+  loremIpsumStack: {
+    width: 362,
+    height: 595,
+    marginTop: 78,
+    marginLeft: -2
+  },
+  loremIpsum2: {
+    fontFamily: "roboto-700",
+    color: "#121212",
+    fontSize: 22,
+    marginTop: -630,
+    marginLeft: 17
+  }
 });
+
+
+
