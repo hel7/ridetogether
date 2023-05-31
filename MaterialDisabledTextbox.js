@@ -1,5 +1,5 @@
 import React, { Component } from "react";
-import { StyleSheet, View, TextInput } from "react-native";
+import { StyleSheet, View, Image, Text, ScrollView, TouchableOpacity, Button } from "react-native";
 import Icon from "react-native-vector-icons/MaterialCommunityIcons";
 import * as Font from 'expo-font';
 

@@ -1,5 +1,5 @@
-import React from "react";
-import { StyleSheet, View, Image, Text, ScrollView, TouchableOpacity } from "react-native";
+import React, { useState, useEffect } from 'react';
+import { StyleSheet, View, Image, Text, ScrollView, TouchableOpacity, Button } from "react-native";
 import MaterialRightIconTextbox from "./MaterialRightIconTextbox";
 import MaterialRightIconTextbox2 from "./MaterialRightIconTextbox 2";
 import { createDrawerNavigator } from "@react-navigation/drawer";
@@ -7,10 +7,54 @@ import { createStackNavigator } from "@react-navigation/stack";
 import { NavigationContainer } from "@react-navigation/native";
 import Untitled1 from "./Untitled1";
 
+import * as ImagePicker from 'expo-image-picker';
+import AsyncStorage from '@react-native-async-storage/async-storage';
+
+const STORAGE_KEY = '@profile_image';
+
 const Drawer = createDrawerNavigator();
 
-
 function Untitled3(props) {
+  const [image, setImage] = useState(null);
+
+  useEffect(() => {
+    loadImage();
+  }, []);
+
+  const loadImage = async () => {
+    try {
+      const storedImage = await AsyncStorage.getItem(STORAGE_KEY);
+      if (storedImage) {
+        setImage(storedImage);
+      }
+    } catch (error) {
+      console.log('Error loading image from storage:', error);
+    }
+  };
+
+  const pickImage = async () => {
+    let result = await ImagePicker.launchImageLibraryAsync({
+      mediaTypes: ImagePicker.MediaTypeOptions.All,
+      allowsEditing: true,
+      aspect: [4, 3],
+      quality: 1,
+    });
+  
+    if (!result.cancelled) {
+      saveImage(result.uri);
+    }
+  };
+  
+  const saveImage = async (uri) => {
+    try {
+      await AsyncStorage.setItem(STORAGE_KEY, uri);
+      setImage(uri);
+    } catch (error) {
+      console.log('Error saving image to storage:', error);
+    }
+  };
+  
+  
     return (
         <ScrollView contentContainerStyle={styles.container}>
 
@@ -35,13 +79,13 @@ function Untitled3(props) {
                             resizeMode="contain"
                             style={styles.image3}
                         ></Image>
-                        <TouchableOpacity style={styles.button2}>
-                            <Image
-                                source={require("./assets/images/d.jpg")}
-                                resizeMode="contain"
-                                style={styles.image4}
-                            ></Image>
-                        </TouchableOpacity>
+                        
+                        <Image
+    source={{ uri: image }}
+    resizeMode="contain"
+    style={styles.image4}
+  />
+                       
                     </View>
                     <View style={styles.loremIpsum4Column}>
                         <Text style={styles.loremIpsum4}>3.5</Text>
@@ -53,18 +97,25 @@ function Untitled3(props) {
                 <Text style={styles.логін}>Логін</Text>
             </View>
             <Text style={styles.профіль}>Профіль</Text>
-            <Image
-                source={require("./assets/images/d.jpg")}
-                resizeMode="contain"
-                style={styles.image2}
-            ></Image>
-            <View style={styles.group}>
-                <TouchableOpacity style={styles.button2}>
-                    <View style={styles.rect2}>
-                        <Text style={styles.змінитиаватар1}>Змінити аватар</Text>
-                    </View>
-                </TouchableOpacity>
-            </View>
+            {image && (
+  <Image
+    source={{ uri: image }}
+    resizeMode="contain"
+    style={styles.image2}
+  />
+)}
+
+<View style={styles.group}>
+  <View style={{ flex: 1, alignItems: 'center', justifyContent: 'center' }}>
+    <Button title="Змінити аватар" onPress={pickImage} />
+  </View>
+</View>
+
+      
+     
+  
+
+
             <MaterialRightIconTextbox2
                 inputStyle=" Логін:"
                 style={styles.materialRightIconTextbox1}
@@ -188,8 +239,8 @@ const styles = StyleSheet.create({
         marginLeft: 0,
     },
     group: {
-        width: 107,
-        height: 22,
+        width: 140,
+        height: 35,
         marginTop: 10,
         marginLeft: 0,
     },
@@ -359,8 +410,8 @@ const styles = StyleSheet.create({
     зберегти: {
         fontFamily: "roboto-regular",
         color: "#121212",
-        marginTop: 6,
-        marginLeft: 18,
+        marginTop: 5,
+        marginLeft: 15,
     },
     loremIpsum5: {
         fontFamily: "roboto-regular",
@@ -410,7 +461,7 @@ const styles = StyleSheet.create({
     image4: {
         width: 47,
         height: 40,
-        marginTop: 13,
+        marginTop: 8,
         marginLeft: -10,
     },
     loremIpsum4Column: {

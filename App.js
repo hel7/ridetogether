@@ -8,14 +8,14 @@ import { createStackNavigator } from '@react-navigation/stack';
 import { ScrollView } from 'react-native-gesture-handler';
 import Untitled1 from "./Untitled1";
 import Untitled2 from "./Untitled2";
-import Untitled3 from "./Untitled3";    
+import Untitled3 from "./Untitled3";
 import Untitled4 from "./Untitled4";
 import CustomDrawerContent from "./CustomDrawerContent";
 
 const Stack = createStackNavigator();
 const Drawer = createDrawerNavigator();
 
-function Untitled(props) { 
+function Untitled(props) {
   const navigation = useNavigation();
 
   useEffect(() => {
@@ -30,7 +30,8 @@ function Untitled(props) {
   }, []);
 
   return (
-    <View style={styles.container}>
+
+    <><View style={styles.container}>
       <View style={styles.rect}>
         <View style={styles.imageStackRow}>
           <View style={styles.imageStack}>
@@ -44,7 +45,7 @@ function Untitled(props) {
           <View style={styles.groupColumn}>
             <View style={styles.group}>
               <TouchableOpacity
-                onPress={() => navigation.navigate("Untitled1")}
+                onPress={() => props.navigation.navigate("Untitled1")}
                 style={styles.button}
               >
                 <Text style={styles.увійти}>Увійти</Text>
@@ -52,7 +53,7 @@ function Untitled(props) {
             </View>
             <View style={styles.group2}>
               <TouchableOpacity
-                onPress={() => navigation.navigate("Untitled2")}
+                onPress={() => props.navigation.navigate("Untitled2")}
                 style={styles.button1}
               >
                 <Text style={styles.створитиАкаунт}>Створити акаунт</Text>
@@ -61,34 +62,31 @@ function Untitled(props) {
           </View>
         </View>
       </View>
-      <ScrollView contentContainerStyle={styles.scrollContainer}>
-        <View style={styles.loremIpsumStack}>
-          <Text style={styles.loremIpsum}>
-            Lorem Ipsum Lorem IpsumLorem IpsumLorem IpsumLorem IpsumLorem
-            IpsumLorem IpsumLorem IpsumLorem IpsumLorem IpsumLorem IpsumLorem
-            IpsumLorem IpsumLorem IpsumLorem IpsumLorem IpsumLorem IpsumLorem
-            IpsumLorem IpsumLorem IpsumLorem IpsumLorem IpsumLorem IpsumLorem
-            IpsumLorem IpsumLorem IpsumLorem IpsumLorem IpsumLorem IpsumLorem
-            IpsumLorem IpsumLorem IpsumLorem IpsumLorem IpsumLorem IpsumLorem
-            IpsumLorem IpsumLorem IpsumLorem Ipsum
-          </Text>
-          <Image
-            source={require("./assets/images/d.jpg")}
-            resizeMode="contain"
-            style={styles.image2}
-          ></Image>
-        </View>
-        <Text style={styles.loremIpsum2}>Lorem Ipsum</Text>
-        <View style={styles.group}>
-          <TouchableOpacity
-            onPress={() => navigation.navigate("Untitled3")}
-            style={styles.button}
-          >
-            <Text style={styles.увійти}>Увійти</Text>
-          </TouchableOpacity>
-        </View>
-      </ScrollView>
-    </View>
+      
+      <View style={styles.loremIpsumStack}>
+        <Text style={styles.loremIpsum}>
+          Lorem Ipsum Lorem IpsumLorem IpsumLorem IpsumLorem IpsumLorem
+          IpsumLorem IpsumLorem IpsumLorem IpsumLorem IpsumLorem IpsumLorem
+          IpsumLorem IpsumLorem IpsumLorem IpsumLorem IpsumLorem IpsumLorem
+          IpsumLorem IpsumLorem IpsumLorem IpsumLorem IpsumLorem IpsumLorem
+          IpsumLorem IpsumLorem IpsumLorem IpsumLorem IpsumLorem IpsumLorem
+          IpsumLorem IpsumLorem IpsumLorem IpsumLorem IpsumLorem IpsumLorem
+          IpsumLorem IpsumLorem IpsumLorem IpsumLorem IpsumLorem IpsumLorem
+          IpsumLorem IpsumLorem IpsumLorem Ipsum
+        </Text>
+        <Image
+          source={require("./assets/images/d.jpg")}
+          resizeMode="contain"
+          style={styles.image2}
+        ></Image>
+      </View>
+      <Text style={styles.loremIpsum2}>Lorem Ipsum</Text>
+    </View><View style={styles.group}>
+        <TouchableOpacity onPress={() => navigation.navigate("Untitled3")} style={styles.button}>
+          <Text style={styles.увійти}>Увійти</Text>
+        </TouchableOpacity>
+      </View></>
+
   );
 }
 
@@ -100,8 +98,8 @@ function App() {
         <Stack.Screen name="Untitled" component={Untitled} />
         <Stack.Screen name="Untitled1" component={Untitled1} />
         <Stack.Screen name="Untitled2" component={Untitled2} />
-        <Stack.Screen name="Untitled3" component={DrawerRoutes}  options={{headerShown: false}}/>
-        <Stack.Screen name="Untitled4" component={DrawerRoutes}  options={{headerShown: false}}/>
+        <Stack.Screen name="Untitled3" component={DrawerRoutes} options={{ headerShown: false }} />
+        <Stack.Screen name="Untitled4" component={DrawerRoutes} options={{ headerShown: false }} />
       </Stack.Navigator>
     </NavigationContainer>
   );
@@ -110,9 +108,9 @@ function App() {
 
 function DrawerRoutes() {
   return (
-    <Drawer.Navigator drawerContent={props => <CustomDrawerContent {...props}/>}  initialRouteName="Untitled3" >
-      <Drawer.Screen name="Untitled3" component={Untitled3} />     
-      <Drawer.Screen name="Untitled4" component={Untitled4} />   
+    <Drawer.Navigator drawerContent={props => <CustomDrawerContent {...props} />} initialRouteName="Untitled3" >
+      <Drawer.Screen name="Untitled3" component={Untitled3} />
+      <Drawer.Screen name="Untitled4" component={Untitled4} />
     </Drawer.Navigator>
   );
 }
@@ -136,12 +134,12 @@ const styles = StyleSheet.create({
     position: "absolute"
   },
   rideTogether: {
-          top: 37,
-      left: 102,
-      position: "absolute",
-      fontFamily: "roboto-700",
-      color: "rgba(255,255,255,1)",
-      fontSize: 20
+    top: 37,
+    left: 102,
+    position: "absolute",
+    fontFamily: "roboto-700",
+    color: "rgba(255,255,255,1)",
+    fontSize: 20
   },
   imageStack: {
     width: 238,
@@ -201,14 +199,14 @@ const styles = StyleSheet.create({
     position: "absolute",
     fontFamily: "roboto-regular",
     color: "#121212",
-    height: 178,
+    height: 185,
     width: 336
   },
   image2: {
-    top: 122,
-    left: 0,
-    width: 362,
-    height: 473,
+    top: 150,
+    left: 30,
+    width: 300,
+    height: 300,
     position: "absolute"
   },
   loremIpsumStack: {

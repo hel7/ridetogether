@@ -1,5 +1,6 @@
 {
   "expo": {
+    "plugins": ["expo-image-picker"],
     "name": "progect",
     "slug": "progect",
     "version": "1.0.0",

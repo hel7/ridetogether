@@ -1,10 +1,30 @@
-import React, { Component } from "react";
-import { StyleSheet, View, Text, Image } from "react-native";
+import React, {useState,useEffect, Component } from "react"; 
+import { StyleSheet, View, Text, Image, TouchableOpacity } from "react-native";
 import MaterialRightIconTextbox from "./MaterialRightIconTextbox";
 
 import MaterialRightIconTextbox2 from "./MaterialRightIconTextbox 2";
+import * as ImagePicker from 'expo-image-picker';
+import AsyncStorage from '@react-native-async-storage/async-storage';
 
+const STORAGE_KEY = '@profile_image';
 function Untitled4(props) {
+
+  const [image, setImage] = useState(null);
+
+  useEffect(() => {
+    loadImage();
+  }, []);
+
+  const loadImage = async () => {
+    try {
+      const storedImage = await AsyncStorage.getItem(STORAGE_KEY);
+      if (storedImage) {
+        setImage(storedImage);
+      }
+    } catch (error) {
+      console.log('Error loading image from storage:', error);
+    }
+  };
   return (
     <View style={styles.container}>
       <View style={styles.rect1Stack}>
@@ -31,9 +51,10 @@ function Untitled4(props) {
           style={styles.image1}
         ></Image>
         <Image
-          source={require("./assets/images/d.jpg")}
-          resizeMode="contain"
-          style={styles.image4}
+          
+    source={{ uri: image }}
+    resizeMode="contain"
+    style={styles.image4}
         ></Image>
       </View>
       <Text style={styles.профіль1}>Профіль</Text>
@@ -45,22 +66,20 @@ function Untitled4(props) {
         ></Image>
         <View style={styles.group}>
           <View style={styles.rect5}>
+          
             <View style={styles.image5Row}>
+             
               <Image
                 source={require("./assets/images/w450h4001385925286Star.png")}
                 resizeMode="contain"
                 style={styles.image5}
               ></Image>
               <Text style={styles.loremIpsum4}>3.5</Text>
+             
             </View>
+           
           </View>
-          <View style={styles.rect8}>
-            <Image
-              source={require("./assets/images/2.jpg")}
-              resizeMode="contain"
-              style={styles.image6}
-            ></Image>
-          </View>
+
         </View>
       </View>
       <MaterialRightIconTextbox2
@@ -144,8 +163,6 @@ const styles = StyleSheet.create({
     marginLeft: 174
   },
   image1: {
-
-  
     width: 155,
     height: 100,
     position: "absolute"
@@ -177,17 +194,18 @@ const styles = StyleSheet.create({
   },
   group: {
     width: 67,
-    height: 105,
+    height: 1000005,
     marginLeft: 8
   },
   rect5: {
     width: 67,
-    height: 43,
+    height: 44,
     backgroundColor: "rgba(85,253,254,1)",
     borderRadius: 5,
     borderWidth: 1,
     borderColor: "#000000",
-    flexDirection: "row"
+    flexDirection: "row",
+    top: 42
   },
   image5: {
     width: 29,
