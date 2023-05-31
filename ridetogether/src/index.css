@@ -28,7 +28,7 @@ html, body {
 .header-logo {
   display: flex;
   align-items: center;
-  margin-left: 20px;
+  margin-left: 35px;
 }
 
 .header-logo img {
@@ -137,13 +137,14 @@ html, body {
 
   .header-title {
     font-size: 20px;
-    margin-left: -10px;
+    margin-left: -5px;
   }
 
   .header-logo img {
     width: 80px;
     height: auto;
     margin-right: 5px;
+    margin-left: -18px;
   }
 
   .header-buttons {

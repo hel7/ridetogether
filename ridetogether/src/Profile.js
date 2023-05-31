@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState,useEffect} from 'react';
 import './App.css';
 import Datetime from 'react-datetime';
 import 'react-datetime/css/react-datetime.css';
@@ -10,7 +10,19 @@ function Profile() {
   const [selectedDate, setSelectedDate] = useState(null);
   const [showAcceptPopup, setAcceptPopup] = useState(false);
   const [closeAnimation, setCloseAnimation] = useState(false);
-
+  const [selectedPhoto, setSelectedPhoto] = useState(null);
+  const [showDropdown, setShowDropdown] = useState(false); 
+  const [windowWidth, setWindowWidth] = useState(window.innerWidth);
+  useEffect(() => {
+    const handleResize = () => {
+      setWindowWidth(window.innerWidth);
+    };
+    window.addEventListener('resize', handleResize);
+    return () => {
+      window.removeEventListener('resize', handleResize);
+    };
+  }, []);
+  
   document.onclick = (args) => {
     if (args.target.id === 'popup-background') {
       closeAcceptPopup();
@@ -38,18 +50,56 @@ function Profile() {
   return (
     <div className="container">
       <header className="header">
-        <div className="header-logo">
-          <img src="Group 1.png" alt="Logo" />
-          <h1 className="header-title">RideTogether</h1>
-        </div>
-      </header>
+  <div className="header-logo">
+    <img src="Group 1.png" alt="Logo" />
+    <h1 className="header-title">RideTogether</h1>
+  </div>
+  <div className="header-userinfo" style={{ position: 'relative' }}>
+  {selectedPhoto ? (
+    <img 
+      className="user-photo" 
+      src={URL.createObjectURL(selectedPhoto)} 
+      alt="User" 
+      onClick={() => setShowDropdown(!showDropdown)} 
+    />
+  ) : (
+    <img 
+      className="user-photo" 
+      src="https://upload.wikimedia.org/wikipedia/commons/thumb/2/20/Phase-250.jpg/768px-Phase-250.jpg" 
+      alt="" 
+      onClick={() => setShowDropdown(!showDropdown)} 
+    />
+  )}
+  {showDropdown && ( 
+    <ul  className="dropdown-menu" style={windowWidth <= 768 ? {margin: "-15px", marginTop: "25px"} : {margin: "10px", marginTop: "32px"}}>
+      <li>Item 1</li>
+      <li>Item 2</li>
+      <li>Item 3</li>
+      </ul>
+    )}
+    </div>
+
+    </header>
       <main className="main">
         <div className="main-info-profile">
-          <h2>Профіль</h2>
+          <h2 className ="namePage">Профіль</h2>
           <div className="profile-image">
-            <img className="photo-choose" src="https://upload.wikimedia.org/wikipedia/commons/thumb/2/20/Phase-250.jpg/768px-Phase-250.jpg" alt=""/>
-          </div>
-          <button className="choose-photo-button">Обрати фото</button>
+        {selectedPhoto ? (
+        <img className="photo-choose" src={URL.createObjectURL(selectedPhoto)} alt="Selected" />
+        ) : (
+        <img className="photo-choose" src="https://upload.wikimedia.org/wikipedia/commons/thumb/2/20/Phase-250.jpg/768px-Phase-250.jpg" alt="" />
+        )}
+        </div>
+          <label className="choose-photo-button" htmlFor="photo-input">
+            Обрати фото
+          <input
+            id="photo-input"
+            type="file"
+            accept="image/*"
+            onChange={(e) => setSelectedPhoto(e.target.files[0])}
+            style={{ display: 'none' }}
+          />
+          </label>
           <input className="input-field" type="text" placeholder="Логін:" />
           <input className="input-field" type="text" placeholder="Email" />
           <input className="input-field" type="text" placeholder="Номер телефону:" />

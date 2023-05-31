@@ -7,7 +7,8 @@ import firebase from 'firebase/compat/app';
 import 'firebase/compat/auth';
 import { getAuth, signInWithPopup, GoogleAuthProvider } from "firebase/auth";
 import { BrowserRouter as Router, Routes, Route, useNavigate } from 'react-router-dom';
-import Profile from './Profile';;
+import axios from 'axios'; // Import axios at the top of your file
+import Profile from './Profile';
 
 
 
@@ -17,7 +18,6 @@ function App() {
   const [showLoginPopup, setShowLoginPopup] = useState(false);
   const [selectedDate, setSelectedDate] = useState(null);
   const [showPassword, setShowPassword] = useState(false);
-  const [isLoggedIn, setIsLoggedIn] = useState(false);
   const navigate = useNavigate();
 
 
@@ -43,7 +43,6 @@ function App() {
       .then((result) => {
         const user = result.user;
         console.log('Аутентифікація успішна:', user);
-        setIsLoggedIn(true);
         navigate('/Profile');
       })
       .catch((error) => {
@@ -51,6 +50,41 @@ function App() {
       });
   };
   
+  const handleRegister = (event) => {
+    event.preventDefault();
+    const login = event.target.elements.login.value;
+    const email = event.target.elements.email.value;
+    const password = event.target.elements.password.value;
+  
+    axios.post(process.env.REACT_APP_API_URL + '/users/register', {
+      login,
+      email,
+      password,
+    })
+    .then(response => {
+      console.log(response.data);
+    })
+    .catch(error => {
+      console.error('There was an error!', error);
+    });
+  };
+  
+  const handleLogin = (event) => {
+    event.preventDefault();
+    const login = event.target.elements.login.value;
+    const password = event.target.elements.password.value;
+  
+    axios.post(process.env.REACT_APP_API_URL + '/users/login', {
+      login,
+      password,
+    })
+    .then(response => {
+      console.log(response.data);
+    })
+    .catch(error => {
+      console.error('There was an error!', error);
+    });
+  };
   
 
   const closeRegisterPopup = () => {
@@ -154,7 +188,7 @@ function App() {
             }`}
           >
             <h2>Реєстрація</h2>
-            <form>
+            <form onSubmit={handleRegister}>
               <label htmlFor="login">Логін</label>
               <input type="text" id="login" />
               <label htmlFor="email">Електронна пошта</label>
@@ -193,7 +227,7 @@ function App() {
               </label>
 
               <div className="popup-buttons">
-                <button type="button" className="button">
+                <button type="submit" className="button">
                   Зареєструватися
                 </button>
                 <div className="textCent">
@@ -226,7 +260,7 @@ function App() {
             }`}
           >
             <h2>Авторизація</h2>
-            <form>
+            <form onSubmit={handleLogin}>
               <label htmlFor="login">Логін</label>
               <input type="text" id="login" />
               <label htmlFor="password-repeat">
@@ -246,7 +280,7 @@ function App() {
               />
               </label>
               <div className="popup-buttons">
-                <button type="button" className="button">
+                <button type="submit" className="button">
                   Увійти
                 </button>
                 <button className="button" type="button" onClick={handleGoogleSignIn}>Ввійти через Google</button>
