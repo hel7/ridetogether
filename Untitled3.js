@@ -93,9 +93,7 @@ function Untitled3(props) {
                     </View>
                 </View>
             </View>
-            <View style={styles.loremIpsum5Column}>
-                <Text style={styles.логін}>Логін</Text>
-            </View>
+     
             <Text style={styles.профіль}>Профіль</Text>
             {image && (
   <Image
@@ -194,27 +192,28 @@ const styles = StyleSheet.create({
         justifyContent: "center",
     },
     rect1: {
-        width: 360,
-        height: 100,
+        width: 394,
+        height: 110,
         backgroundColor: "rgba(37,66,225,1)",
         alignSelf: "center",
     },
     image1: {
-        top: 0,
-        left: 0,
-        width: 115,
-        height: 98,
+                width: 115,
+        height: 100,
         position: "absolute",
-        marginTop: -25
+        top: -21,
+        marginLeft: 3
+        
     },
     rideTogether1: {
-        top: 35,
-        left: 94,
-        position: "absolute",
+        top: -4,
+        height: 50,
+        width: 137,
         fontFamily: "roboto-700",
         color: "rgba(255,255,255,1)",
-        fontSize: 20,
-        marginTop: -25
+        fontSize: 23,
+        marginTop: 13,
+        marginLeft: 101
     },
     image1Stack: {
         width: 214,
@@ -237,6 +236,8 @@ const styles = StyleSheet.create({
         borderColor: "#000000",
         marginTop: 9,
         marginLeft: 0,
+        borderRadius: 78, // Половина ширины (или высоты) картинки
+        overflow: 'hidden', // Скрыть контент, выходящий за пределы границы
     },
     group: {
         width: 140,
@@ -416,18 +417,21 @@ const styles = StyleSheet.create({
     loremIpsum5: {
         fontFamily: "roboto-regular",
         color: "rgba(255,255,255,1)",
-        height: 30,
-        width: 90,
-        fontSize: 10,
+        height: 19,
+        width: 79,
+        fontSize: 8,
         textAlign: "center",
-        marginTop: -45,
-        marginLeft: 110,
+        marginTop: -32,
+        marginLeft: 246,
     },
     image3: {
         width: 30,
         height: 30,
-        marginLeft: 20,
-
+        marginLeft: 45,
+        borderRadius: 78, // Половина ширины (или высоты) картинки
+        overflow: 'hidden', // Скрыть контент, выходящий за пределы границы
+        top: 0,
+        left: 9
 
     },
     image3Column: {
@@ -437,9 +441,10 @@ const styles = StyleSheet.create({
     },
     loremIpsum4: {
         fontFamily: "roboto-regular",
-        color: "rgba(1,255,255,1)",
+        color: "rgba(255,255,255,1)",
         fontSize: 18,
         height: 23,
+        left: 34
 
 
     },
@@ -459,10 +464,13 @@ const styles = StyleSheet.create({
         marginTop: 21
     },
     image4: {
-        width: 47,
-        height: 40,
-        marginTop: 8,
-        marginLeft: -10,
+        width: 55,
+        height: 55,
+        marginTop: 2,
+        marginLeft: 61,
+        borderRadius: 100, 
+        borderWidth: 2,
+        borderColor: "#000000",
     },
     loremIpsum4Column: {
         width: 52,

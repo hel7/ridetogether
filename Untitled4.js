@@ -42,11 +42,11 @@ function Untitled4(props) {
             <Text style={styles.loremIpsum3}>
               Гаряча лінія:{"\n"}ХХХ-ХХХ-ХХХ-ХХХ
             </Text>
-            <Text style={styles.логін1}>Логін</Text>
+          
           </View>
         </View>
         <Image
-          source={require("./assets/images/Group_1.png")}
+          source={require("./assets/images/Group_1.png")}//из бд
           resizeMode="contain"
           style={styles.image1}
         ></Image>
@@ -74,7 +74,7 @@ function Untitled4(props) {
                 resizeMode="contain"
                 style={styles.image5}
               ></Image>
-              <Text style={styles.loremIpsum4}>3.5</Text>
+              <Text style={styles.loremIpsum4}>3.6</Text>
              
             </View>
            
@@ -107,7 +107,6 @@ const styles = StyleSheet.create({
     flex: 1
   },
   rect1: {
-    top: 0,
     width: 360,
     height: 110,
     position: "absolute",
@@ -125,13 +124,15 @@ const styles = StyleSheet.create({
   image3: {
     width: 30,
     height: 30,
-    marginLeft: 68
+    marginLeft: 75,
+    marginTop: -13,
+    
   },
   loremIpsum2: {
     fontFamily: "roboto-regular",
     color: "rgba(255,255,255,1)",
     fontSize: 18,
-    marginTop: 4
+    marginTop: -10
   },
   rideTogether1Row: {
     height: 46,
@@ -147,7 +148,8 @@ const styles = StyleSheet.create({
     width: 79,
     fontSize: 8,
     textAlign: "center",
-    marginTop: 4
+    marginTop: 4,
+    marginLeft: 55
   },
   логін1: {
     fontFamily: "roboto-regular",
@@ -165,14 +167,21 @@ const styles = StyleSheet.create({
   image1: {
     width: 155,
     height: 100,
-    position: "absolute"
+    position: "absolute",
+    
+    
   },
   image4: {
     top: 72,
     left: 292,
-    width: 47,
-    height: 40,
-    position: "absolute"
+    width: 55,
+    height: 55,
+    marginTop: -19,
+    marginLeft: 45,
+    position: "absolute",
+    borderRadius: 100, 
+    borderWidth: 2,
+    borderColor: "#000000",
   },
   rect1Stack: {
     width: 394,
@@ -183,14 +192,16 @@ const styles = StyleSheet.create({
     fontFamily: "roboto-regular",
     color: "#121212",
     textAlign: "center",
-    fontSize: 21,
-    marginTop: 14,
+    fontSize: 35,
+    marginTop: 10,
   },
   image2: {
     width: 156,
-    height: 133,
-    borderWidth: 1,
-    borderColor: "#000000"
+    height: 156,
+    borderWidth: 2,
+    borderColor: "#000000",
+    borderRadius: 100, // Половина ширины (или высоты) картинки
+    overflow: 'hidden', // Скрыть контент, выходящий за пределы границы
   },
   group: {
     width: 67,
