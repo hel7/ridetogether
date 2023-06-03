@@ -1,59 +1,57 @@
-import React, { useState, useEffect, Component } from "react";
-import { StyleSheet, View, Text, Image, TouchableOpacity, Animated, Icon, ScrollView } from "react-native";
+import React, { useState, useEffect } from "react";
+import { StyleSheet, View, Text, Image, Button, TouchableOpacity, Animated, ScrollView } from "react-native";
 import Svg, { Ellipse } from "react-native-svg";
 import MaterialButtonShare from "./MaterialButtonShare";
-
 import EntypoIcon from "react-native-vector-icons/Entypo";
 import FeatherIcon from "react-native-vector-icons/Feather";
 import AsyncStorage from '@react-native-async-storage/async-storage';
-
-
-
 import * as ImagePicker from 'expo-image-picker';
-
 
 const STORAGE_KEY = '@profile_image';
 
-
 const Untitled5 = (props) => {
     const [image, setImage] = useState(null);
-    const scrollY = new Animated.Value(0);
 
     useEffect(() => {
-        loadImage();
-        return () => {
-            // Очистка при размонтировании компонента
-            scrollY.removeAllListeners();
-        };
+      loadImage();
     }, []);
-
+  
     const loadImage = async () => {
-        try {
-            const storedImage = await AsyncStorage.getItem(STORAGE_KEY);
-            if (storedImage) {
-                setImage(storedImage);
-            }
-        } catch (error) {
-            console.log('Error loading image from storage:', error);
+      try {
+        const storedImage = await AsyncStorage.getItem(STORAGE_KEY);
+        if (storedImage) {
+          setImage(storedImage);
         }
+      } catch (error) {
+        console.log('Error loading image from storage:', error);
+      }
     };
-
-    const handleScroll = Animated.event(
-        [{ nativeEvent: { contentOffset: { y: scrollY } } }],
-        { useNativeDriver: true }
-    );
-
-
-    const buttonTranslateY = scrollY.interpolate({
-        inputRange: [0, 100], // Диапазон прокрутки, при котором происходит движение кнопки
-        outputRange: [0, 50], // Диапазон смещения кнопки
-        extrapolate: 'clamp', // Ограничение значений входного диапазона
-    });
-    return (
-        <ScrollView contentContainerStyle={styles.container} >
-
-
-
+  
+    const pickImage = async () => {
+      let result = await ImagePicker.launchImageLibraryAsync({
+        mediaTypes: ImagePicker.MediaTypeOptions.All,
+        allowsEditing: true,
+        aspect: [4, 3],
+        quality: 1,
+      });
+    
+      if (!result.cancelled) {
+        saveImage(result.uri);
+      }
+    };
+    
+    const saveImage = async (uri) => {
+      try {
+        await AsyncStorage.setItem(STORAGE_KEY, uri);
+        setImage(uri);
+      } catch (error) {
+        console.log('Error saving image to storage:', error);
+      }
+    };
+  return (
+    <View style={styles.container}>
+      <ScrollView    
+      >
 
             <View style={styles.rect1}>
                 <View style={styles.image1StackStackRow}>
@@ -137,21 +135,37 @@ const Untitled5 = (props) => {
 
             </View>
 
+            </ScrollView>
+            <View style={{position:'absolute',bottom:50, right:15,  width: 68, borderRadius: 100,    height: 68,alignSelf:'flex-end'}}>
+            <MaterialButtonShare
+        style={styles.materialButtonShare}
+      ></MaterialButtonShare>
+    </View>
+</View>
+); 
+};
 
 
 
-
-
-
-            <View style={styles.rect7}></View>
-
-        </ScrollView>
-
-
-    );
-}
 export default Untitled5;
 const styles = StyleSheet.create({
+    button: {
+        backgroundColor: 'blue',
+        padding: 10,
+        borderRadius: 5,
+      },
+      buttonText: {
+        color: 'white',
+        fontSize: 16,
+        fontWeight: 'bold',
+      },
+
+    buttonContainer: {
+        position: 'absolute',
+        bottom: 20, // Adjust the position as needed
+        alignSelf: 'center',
+        zIndex: 999, // Set a high z-index to make sure the button is above other elements
+      },
     rect7: {
         backgroundColor: "rgba(255,255,255,1)",
         width: 303,
@@ -611,7 +625,6 @@ const styles = StyleSheet.create({
         marginLeft: 295,
         marginTop: -25
     },
-
 
 });
 
