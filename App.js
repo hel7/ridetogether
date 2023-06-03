@@ -10,6 +10,7 @@ import Untitled1 from "./Untitled1";
 import Untitled2 from "./Untitled2";
 import Untitled3 from "./Untitled3";
 import Untitled4 from "./Untitled4";
+import Untitled5 from "./Untitled5";
 import CustomDrawerContent from "./CustomDrawerContent";
 
 const Stack = createStackNavigator();
@@ -100,6 +101,7 @@ function App() {
         <Stack.Screen name="Untitled2" component={Untitled2} />
         <Stack.Screen name="Untitled3" component={DrawerRoutes} options={{ headerShown: false }} />
         <Stack.Screen name="Untitled4" component={DrawerRoutes} options={{ headerShown: false }} />
+        <Stack.Screen name="Untitled5" component={DrawerRoutes} options={{ headerShown: false }} />
       </Stack.Navigator>
     </NavigationContainer>
   );
@@ -111,6 +113,7 @@ function DrawerRoutes() {
     <Drawer.Navigator drawerContent={props => <CustomDrawerContent {...props} />} initialRouteName="Untitled3" >
       <Drawer.Screen name="Untitled3" component={Untitled3} />
       <Drawer.Screen name="Untitled4" component={Untitled4} />
+      <Drawer.Screen name="Untitled5" component={Untitled5} />
     </Drawer.Navigator>
   );
 }
