@@ -50,8 +50,7 @@ const Untitled5 = (props) => {
     };
   return (
     <View style={styles.container}>
-      <ScrollView    
-      >
+      <ScrollView>
 
             <View style={styles.rect1}>
                 <View style={styles.image1StackStackRow}>
@@ -134,14 +133,21 @@ const Untitled5 = (props) => {
             <View style={styles.rect11}>
 
             </View>
-
+            <View style={styles.rect7}></View>
             </ScrollView>
+            
             <View style={{position:'absolute',bottom:50, right:15,  width: 68, borderRadius: 100,    height: 68,alignSelf:'flex-end'}}>
             <MaterialButtonShare
         style={styles.materialButtonShare}
       ></MaterialButtonShare>
+
+
+
     </View>
-</View>
+
+    </View>
+
+
 ); 
 };
 
@@ -170,13 +176,13 @@ const styles = StyleSheet.create({
         backgroundColor: "rgba(255,255,255,1)",
         width: 303,
         height: 30,
-        marginTop: 20,
+       
     },
     пошук: {
         fontFamily: "roboto-regular",
         color: "#121212",
-        marginTop: 4,
-        marginLeft: 11
+        marginTop: 2,
+        marginLeft: 10
     },
     rect10: {
         width: 65,
@@ -184,7 +190,8 @@ const styles = StyleSheet.create({
         backgroundColor: "#E6E6E6",
         borderWidth: 1,
         borderColor: "#000000",
-        borderRadius: 5
+        borderRadius: 5,
+        left: 22
     },
     icon2: {
         color: "rgba(0,0,0,1)",
@@ -196,11 +203,12 @@ const styles = StyleSheet.create({
     },
     rect81: {
         width: 30,
-        height: 29,
+        height: 30,
         backgroundColor: "#E6E6E6",
         borderRadius: 5,
         borderWidth: 1,
-        borderColor: "#000000"
+        borderColor: "#000000",
+        left: 10,
     },
     rect41: {
         width: 156,
@@ -209,14 +217,14 @@ const styles = StyleSheet.create({
         borderRadius: 4,
         borderWidth: 1,
         borderColor: "#000000",
-        marginLeft: 21,
+        marginLeft: 23,
         marginTop: 6
     },
     датаПодорожі: {
         fontFamily: "roboto-regular",
         color: "#121212",
-        fontSize: 12,
-        marginTop: 8
+        fontSize: 14,
+        marginTop: 5
     },
     датаПодорожіRow: {
         height: 30,
@@ -231,15 +239,16 @@ const styles = StyleSheet.create({
         height: 15,
         width: 15,
         marginTop: 7,
-        marginLeft: 8
+        marginLeft: 7
     },
     rect71: {
         width: 30,
-        height: 29,
+        height: 30,
         backgroundColor: "#E6E6E6",
         borderRadius: 5,
         borderWidth: 1,
-        borderColor: "#000000"
+        borderColor: "#000000",
+        left: 10,
     },
     rect51: {
         width: 156,
@@ -248,14 +257,14 @@ const styles = StyleSheet.create({
         borderRadius: 4,
         borderWidth: 1,
         borderColor: "#000000",
-        marginLeft: 26,
+        marginLeft: 29,
         marginTop: 7
     },
     кінцевеМісце: {
         fontFamily: "roboto-regular",
         color: "#121212",
-        fontSize: 12,
-        marginTop: 7
+        fontSize: 14,
+        marginTop: 5
     },
     кінцевеМісцеRow: {
         height: 30,
@@ -270,15 +279,16 @@ const styles = StyleSheet.create({
         height: 15,
         width: 15,
         marginTop: 7,
-        marginLeft: 8
+        marginLeft: 7
     },
     rect61: {
         width: 30,
-        height: 29,
+        height: 30,
         backgroundColor: "#E6E6E6",
         borderRadius: 5,
         borderWidth: 1,
-        borderColor: "#000000"
+        borderColor: "#000000",
+        left : 10
     },
     rect31: {
         width: 156,
@@ -288,13 +298,13 @@ const styles = StyleSheet.create({
         borderWidth: 1,
         borderColor: "#000000",
         marginLeft: 10,
-        marginTop: 7
+        marginTop: 7,
     },
     початковеМісце: {
         fontFamily: "roboto-regular",
         color: "#121212",
-        fontSize: 12,
-        marginTop: 8
+        fontSize: 14,
+        marginTop: 5
     },
     початковеМісцеRow: {
         height: 30,
@@ -330,6 +340,7 @@ const styles = StyleSheet.create({
         width: 335,
         height: 650,
         alignSelf: "center",
+        borderRadius: 5,
     },
     container: {
         flexGrow: 1,
