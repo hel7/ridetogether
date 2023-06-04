@@ -1,17 +1,68 @@
 import React, { useState, useEffect } from "react";
-import { StyleSheet, View, Text, Image, Button, TouchableOpacity, Animated, ScrollView } from "react-native";
+import { StyleSheet, View, Text, Image, Button, TouchableOpacity, Animated, ScrollView, FlatList, Icon } from "react-native";
 import Svg, { Ellipse } from "react-native-svg";
 import MaterialButtonShare from "./MaterialButtonShare";
 import EntypoIcon from "react-native-vector-icons/Entypo";
 import FeatherIcon from "react-native-vector-icons/Feather";
 import AsyncStorage from '@react-native-async-storage/async-storage';
 import * as ImagePicker from 'expo-image-picker';
+import FontAwesomeIcon from 'react-native-vector-icons/FontAwesome';
 
 const STORAGE_KEY = '@profile_image';
 
 const Untitled5 = (props) => {
     const [image, setImage] = useState(null);
+    const data = [
+        { id: 1, title: 'Item 1' },
+        { id: 2, title: 'Item 2' },
+        { id: 3, title: 'Item 3' },
+        { id: 3, title: 'Item 3' },
+        { id: 3, title: 'Item 3' },
+        { id: 3, title: 'Item 3' },
+        { id: 10, title: 'Item 3' },
+        // Add more items as needed
+      ];
+    
+      const renderItem = ({ item }) => (
+        <View style={styles.rect}>
+          <View style={styles.rect2Row}>
+            <View style={styles.rect2f}>
+            <FontAwesomeIcon name="image" style={styles.iconf1}></FontAwesomeIcon>
+  <Text style={styles.loremIpsumf1}>{item.title}</Text>
 
+            </View>
+            <View style={styles.датаПодорожі2Stack}>
+              <Text style={styles.датаПодорожі2}>Дата подорожі</Text>
+              <View style={styles.rect7f}></View>
+            </View>
+          </View>
+          <View style={styles.почетковеМістоRow}>
+            <Text style={styles.почетковеМісто}>Почеткове місто</Text>
+            <View style={styles.rect3f}></View>
+          </View>
+          <View style={styles.кінцевеМістоRow}>
+            <Text style={styles.кінцевеМісто}>Кінцеве місто</Text>
+            <View style={styles.rect4f}></View>
+          </View>
+          <View style={styles.статус2Row}>
+            <Text style={styles.статус2}>Статус</Text>
+            <View style={styles.rect6f}></View>
+          </View>
+          <View style={styles.кількістьМісцьRow}>
+            <Text style={styles.кількістьМісць}>Кількість місць</Text>
+            <View style={styles.rect5f}></View>
+          </View>
+          <View style={styles.вільнихRow}>
+            <Text style={styles.вільних}>Вільних</Text>
+            <View style={styles.rect8f}></View>
+          </View>
+          <View style={styles.rect10Row}>
+            <View style={styles.rect10f}></View>
+            <View style={styles.rect9f}></View>
+          </View>
+        </View>
+      );
+    
     useEffect(() => {
       loadImage();
     }, []);
@@ -50,7 +101,7 @@ const Untitled5 = (props) => {
     };
   return (
     <View style={styles.container}>
-      <ScrollView>
+     
 
             <View style={styles.rect1}>
                 <View style={styles.image1StackStackRow}>
@@ -113,39 +164,46 @@ const Untitled5 = (props) => {
                     </TouchableOpacity>
                 </View>
                 <View style={styles.датаПодорожіRow}>
-                    <Text style={styles.датаПодорожі}>Дата подорожі:</Text>
-                    <View style={styles.rect41}></View>
-                    <TouchableOpacity style={styles.button2}>
-                        <View style={styles.rect81}>
-                            <EntypoIcon name="calendar" style={styles.icon2}></EntypoIcon>
-                        </View>
-                    </TouchableOpacity>
-                </View>
-                <TouchableOpacity style={styles.button5}>
-                    <View style={styles.rect10}>
-                        <Text style={styles.пошук}>Пошук</Text>
-                    </View>
-                </TouchableOpacity>
-            </View>
+                      <Text style={styles.датаПодорожі}>Дата подорожі:</Text>
+                      <View style={styles.rect41}></View>
+                      <TouchableOpacity style={styles.button2}>
+                          <View style={styles.rect81}>
+                              <EntypoIcon name="calendar" style={styles.icon2}></EntypoIcon>
+                          </View>
+                      </TouchableOpacity>
+                  </View>
+                  <TouchableOpacity style={styles.button5}>
+                      <View style={styles.rect10}>
+                          <Text style={styles.пошук}>Пошук</Text>
+                      </View>
+                  </TouchableOpacity>
+              </View>
 
 
 
-            <View style={styles.rect11}>
+              <View style={styles.rect11}>
+                  <FlatList
+               
+                          data={data}
+                          renderItem={renderItem}
+                          keyExtractor={(item) => item.id.toString()}
+                    />
+                 
+              </View>
+              <View style={styles.rect7}></View>
+              
+        
 
-            </View>
-            <View style={styles.rect7}></View>
-            </ScrollView>
-            
-            <View style={{position:'absolute',bottom:50, right:15,  width: 68, borderRadius: 100,    height: 68,alignSelf:'flex-end'}}>
-            <MaterialButtonShare
-        style={styles.materialButtonShare}
-      ></MaterialButtonShare>
+          <View style={{ position: 'absolute', bottom: 100, right: 20, width: 68, borderRadius: 100, height: 68, alignSelf: 'flex-end' }}>
+              <MaterialButtonShare
+                  style={styles.materialButtonShare}
+              ></MaterialButtonShare>
 
 
 
-    </View>
+          </View>
 
-    </View>
+      </View>
 
 
 ); 
@@ -155,6 +213,219 @@ const Untitled5 = (props) => {
 
 export default Untitled5;
 const styles = StyleSheet.create({
+    containerf: {
+        width: 317,
+        height: 168,
+        marginTop: 10,
+        marginLeft: 8
+      },
+    rect9f: {
+        width: 134,
+        height: 20,
+        backgroundColor: "rgba(85,253,254,1)",
+        borderWidth: 1,
+        borderColor: "#000000",
+        borderRadius: 5,
+        marginLeft: 21
+      },
+    rect10f: {
+        width: 134,
+        height: 20,
+        backgroundColor: "rgba(85,253,254,1)",
+        borderWidth: 1,
+        borderColor: "#000000",
+        borderRadius: 5,
+        marginTop: 1
+      },
+     rect10Row: {
+        height: 21,
+        flexDirection: "row",
+        marginTop: 11,
+        marginLeft: 14,
+        marginRight: 14
+      },
+    rect8f: {
+        width: 129,
+        height: 12,
+        backgroundColor: "rgba(255,255,255,1)",
+        borderWidth: 1,
+        borderColor: "#000000",
+        borderRadius: 5,
+        marginLeft: 9,
+        marginTop: 2
+      },
+    вільних: {
+        fontFamily: "roboto-regular",
+        color: "rgba(255,255,255,1)",
+        height: 17,
+        width: 110
+      },
+    вільнихRow: {
+        height: 17,
+        flexDirection: "row",
+        marginTop: 3,
+        marginLeft: 5,
+        marginRight: 64
+      },
+    rect5f: {
+        width: 129,
+        height: 12,
+        backgroundColor: "rgba(255,255,255,1)",
+        borderWidth: 1,
+        borderColor: "#000000",
+        borderRadius: 5,
+        marginLeft: 9,
+        marginTop: 3
+      },
+    кількістьМісцьRow: {
+        height: 17,
+        flexDirection: "row",
+        marginTop: 3,
+        marginLeft: 5,
+        marginRight: 64
+      },
+    статус2: {
+        fontFamily: "roboto-regular",
+        color: "rgba(255,255,255,1)",
+        height: 17,
+        width: 110
+      },
+    rect6f: {
+        width: 129,
+        height: 12,
+        backgroundColor: "rgba(255,255,255,1)",
+        borderWidth: 1,
+        borderColor: "#000000",
+        borderRadius: 5,
+        marginLeft: 9,
+        marginTop: 3
+      },
+    статус2Row: {
+        height: 17,
+        flexDirection: "row",
+        marginTop: 3,
+        marginLeft: 5,
+        marginRight: 64
+      },
+      кількістьМісць: {
+        fontFamily: "roboto-regular",
+        color: "rgba(255,255,255,1)",
+        height: 17,
+        width: 110
+      },
+    rect4f: {
+        width: 129,
+        height: 12,
+        backgroundColor: "rgba(255,255,255,1)",
+        borderWidth: 1,
+        borderColor: "#000000",
+        borderRadius: 5,
+        marginLeft: 9,
+        marginTop: 1
+      },
+    кінцевеМісто: {
+        fontFamily: "roboto-regular",
+        color: "rgba(255,255,255,1)",
+        height: 16,
+        width: 110
+      },
+    кінцевеМістоRow: {
+        height: 16,
+        flexDirection: "row",
+        marginTop: 4,
+        marginLeft: 5,
+        marginRight: 64
+      },
+    rect3f: {
+        width: 129,
+        height: 12,
+        backgroundColor: "rgba(255,255,255,1)",
+        borderWidth: 1,
+        borderColor: "#000000",
+        borderRadius: 5,
+        marginLeft: 9,
+        marginTop: 2
+      },
+    почетковеМісто: {
+        fontFamily: "roboto-regular",
+        color: "rgba(255,255,255,1)",
+        height: 16,
+        width: 110
+      },
+    почетковеМістоRow: {
+        height: 16,
+        flexDirection: "row",
+        marginTop: 5,
+        marginLeft: 5,
+        marginRight: 64
+      },
+    rect7f: {
+        top: 2,
+        left: 103,
+        width: 71,
+        height: 14,
+        position: "absolute",
+        backgroundColor: "rgba(255,255,255,1)",
+        borderWidth: 1,
+        borderColor: "#000000",
+        borderRadius: 5
+      },
+    датаПодорожі2: {
+        top: 0,
+        left: 0,
+        position: "absolute",
+        fontFamily: "roboto-regular",
+        color: "rgba(255,255,255,1)",
+        height: 17,
+        width: 110
+      },
+    датаПодорожі2Stack: {
+        width: 174,
+        height: 17,
+        marginLeft: 4,
+        marginTop: 9
+      },
+    loremIpsumf1: {
+        fontFamily: "roboto-regular",
+        color: "#121212",
+        height: 17,
+        width: 85,
+        marginTop: 8,
+        marginLeft: 39
+      },
+    iconf1: {
+        color: "rgba(128,128,128,1)",
+        fontSize: 30,
+        height: 0,
+        width: 0,
+        marginLeft: 5
+      },
+    item: {
+        padding: 10,
+    },
+    rect2Row: {
+        height: 32,
+        flexDirection: "row",
+        marginRight: 9
+      },
+    rect2f: {
+        width: 130,
+        height: 32,
+        backgroundColor: "rgba(85,253,254,1)",
+        borderWidth: 1,
+        borderColor: "#000000",
+        borderRadius: 5
+      },
+    rect: {
+        width: 317,
+        height: 168,
+        backgroundColor: "rgba(37,66,225,1)",
+        borderWidth: 1,
+        borderColor: "#000000",
+        borderRadius: 5,
+        marginTop: 10,
+        marginLeft: 8,
+      },
     button: {
         backgroundColor: 'blue',
         padding: 10,
@@ -176,7 +447,7 @@ const styles = StyleSheet.create({
         backgroundColor: "rgba(255,255,255,1)",
         width: 303,
         height: 30,
-       
+       marginTop: 20,
     },
     пошук: {
         fontFamily: "roboto-regular",
@@ -333,12 +604,12 @@ const styles = StyleSheet.create({
 
     },
     rect11: {
-        top: 20,
+        top: 10,
         backgroundColor: "#E6E6E6",
         borderWidth: 1,
         borderColor: "#000000",
         width: 335,
-        height: 650,
+        height: 350,
         alignSelf: "center",
         borderRadius: 5,
     },

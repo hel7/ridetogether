@@ -12,7 +12,7 @@ function MaterialButtonShare(props) {
 
 const styles = StyleSheet.create({
   container: {
-    backgroundColor: "rgba(37,66,225,1)",
+    backgroundColor: "rgba(187,27,247,1)",
     alignItems: "center",
     justifyContent: "center",
     borderRadius: 28,
