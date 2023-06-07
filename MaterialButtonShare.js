@@ -1,11 +1,21 @@
-import React, { Component } from "react";
-import { StyleSheet, TouchableOpacity } from "react-native";
-import Icon from "react-native-vector-icons/MaterialCommunityIcons";
-
+import React from 'react';
+import { StyleSheet, TouchableOpacity } from 'react-native';
+import Icon from 'react-native-vector-icons/MaterialCommunityIcons';
+import { useNavigation } from '@react-navigation/native';
+import Untitled6 from "./Untitled6";
 function MaterialButtonShare(props) {
+  const navigation = useNavigation();
+
+  const handleButtonPress = () => {
+    navigation.navigate("Untitled6");
+  };
+
   return (
-    <TouchableOpacity style={[styles.container, props.style]}>
-      <Icon name="plus" style={styles.icon}></Icon>
+    <TouchableOpacity
+      style={[styles.container, props.style]}
+      onPress={handleButtonPress}
+    >
+      <Icon name="plus" style={styles.icon} />
     </TouchableOpacity>
   );
 }

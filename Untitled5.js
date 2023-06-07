@@ -78,18 +78,7 @@ const Untitled5 = (props) => {
       }
     };
   
-    const pickImage = async () => {
-      let result = await ImagePicker.launchImageLibraryAsync({
-        mediaTypes: ImagePicker.MediaTypeOptions.All,
-        allowsEditing: true,
-        aspect: [4, 3],
-        quality: 1,
-      });
-    
-      if (!result.cancelled) {
-        saveImage(result.uri);
-      }
-    };
+
     
     const saveImage = async (uri) => {
       try {
@@ -196,6 +185,7 @@ const Untitled5 = (props) => {
 
           <View style={{ position: 'absolute', bottom: 100, right: 20, width: 68, borderRadius: 100, height: 68, alignSelf: 'flex-end' }}>
               <MaterialButtonShare
+              
                   style={styles.materialButtonShare}
               ></MaterialButtonShare>
 
