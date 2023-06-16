@@ -1,25 +1,37 @@
-import React, { useState, useEffect } from "react";
-import { StyleSheet, View, Text, Image, Button, TouchableOpacity, Animated, ScrollView, FlatList, Icon } from "react-native";
-import Svg, { Ellipse } from "react-native-svg";
+import React, { useState, useEffect } from 'react';
+import { StyleSheet, TextInput, View, Text, Image, Button, TouchableOpacity, Animated, FlatList } from "react-native";
 import MaterialButtonShare from "./MaterialButtonShare";
 import EntypoIcon from "react-native-vector-icons/Entypo";
 import FeatherIcon from "react-native-vector-icons/Feather";
 import AsyncStorage from '@react-native-async-storage/async-storage';
 import * as ImagePicker from 'expo-image-picker';
-import FontAwesomeIcon from 'react-native-vector-icons/FontAwesome';
+import Geocoder from 'react-native-geocoding';
+import MapView, { PROVIDER_GOOGLE } from 'react-native-maps';
+import { GoogleMapsDirections } from 'react-native-google-maps-directions';
+import { Linking } from 'react-native';
+import { openInMaps } from 'react-native-intent-link';
+import MapView, { Marker } from 'react-native-maps';
 
+Geocoder.init('AIzaSyAQB8GQ8I2EWwLsJHMbyb4So0BBkaYeOoc');
 const STORAGE_KEY = '@profile_image';
+
+
+
+
 
 const Untitled5 = (props) => {
     const [image, setImage] = useState(null);
+  const [selectedAddress, setSelectedAddress] = useState(null); // Оголошення та визначення змінної selectedAddress
+  const [selectedLocation, setSelectedLocation] = useState(null);
+
     const data = [
-        { id: 1, title: 'Item 1' },
-        { id: 2, title: 'Item 2' },
-        { id: 3, title: 'Item 3' },
-        { id: 3, title: 'Item 3' },
-        { id: 3, title: 'Item 3' },
-        { id: 3, title: 'Item 3' },
-        { id: 10, title: 'Item 3' },
+        { id: 1, DriverLogin: 'Lorem Ipsum 1', DateTrip: 'DD/MM/YYYY', StartPlase:'StartPlaseName', EndPlase:'EndPlaseName', Statis:'StatisStatis', Seats:'4', FreeSeats:'1'},
+        { id: 2, DriverLogin: 'Lorem Ipsum 1', DateTrip: 'DD/MM/YYYY', StartPlase:'StartPlaseName', EndPlase:'EndPlaseName', Statis:'StatisStatis', Seats:'4', FreeSeats:'1'},
+        { id: 3, DriverLogin: 'Lorem Ipsum 1', DateTrip: 'DD/MM/YYYY', StartPlase:'StartPlaseName', EndPlase:'EndPlaseName', Statis:'StatisStatis', Seats:'4', FreeSeats:'1'},
+        { id: 3, DriverLogin: 'Lorem Ipsum 1', DateTrip: 'DD/MM/YYYY', StartPlase:'StartPlaseName', EndPlase:'EndPlaseName', Statis:'StatisStatis', Seats:'4', FreeSeats:'1'},
+        { id: 3, DriverLogin: 'Lorem Ipsum 1', DateTrip: 'DD/MM/YYYY', StartPlase:'StartPlaseName', EndPlase:'EndPlaseName', Statis:'StatisStatis', Seats:'4', FreeSeats:'1'},
+        { id: 3, DriverLogin: 'Lorem Ipsum 1', DateTrip: 'DD/MM/YYYY', StartPlase:'StartPlaseName', EndPlase:'EndPlaseName', Statis:'StatisStatis', Seats:'4', FreeSeats:'1'},
+        { id: 10, DriverLogin: 'Lorem Ipsum 1', DateTrip: 'DD/MM/YYYY', StartPlase:'StartPlaseName', EndPlase:'EndPlaseName', Statis:'StatisStatis', Seats:'4', FreeSeats:'1'},
         // Add more items as needed
       ];
     
@@ -27,44 +39,53 @@ const Untitled5 = (props) => {
         <View style={styles.rect}>
           <View style={styles.rect2Row}>
             <View style={styles.rect2f}>
-            <FontAwesomeIcon name="image" style={styles.iconf1}></FontAwesomeIcon>
-  <Text style={styles.loremIpsumf1}>{item.title}</Text>
+           
+  <Text style={styles.loremIpsumf1}>{item.DriverLogin}</Text>
 
             </View>
             <View style={styles.датаПодорожі2Stack}>
               <Text style={styles.датаПодорожі2}>Дата подорожі</Text>
-              <View style={styles.rect7f}></View>
+              <View style={styles.rect7f}><Text style={styles.DateTriploremIpsumf1}>{item.DateTrip}</Text></View>
             </View>
           </View>
           <View style={styles.почетковеМістоRow}>
             <Text style={styles.почетковеМісто}>Почеткове місто</Text>
-            <View style={styles.rect3f}></View>
+            <View style={styles.rect3f}><Text style={styles.FlatListloremIpsumf}>{item.StartPlase}</Text></View>
           </View>
           <View style={styles.кінцевеМістоRow}>
             <Text style={styles.кінцевеМісто}>Кінцеве місто</Text>
-            <View style={styles.rect4f}></View>
+            <View style={styles.rect4f}><Text style={styles.FlatListloremIpsumf}>{item.EndPlase}</Text></View>
           </View>
           <View style={styles.статус2Row}>
             <Text style={styles.статус2}>Статус</Text>
-            <View style={styles.rect6f}></View>
+            <View style={styles.rect6f}><Text style={styles.FlatListloremIpsumf}>{item.Statis}</Text></View>
           </View>
           <View style={styles.кількістьМісцьRow}>
             <Text style={styles.кількістьМісць}>Кількість місць</Text>
-            <View style={styles.rect5f}></View>
+            <View style={styles.rect5f}><Text style={styles.FlatListloremIpsumf}>{item.Seats}</Text></View>
           </View>
           <View style={styles.вільнихRow}>
             <Text style={styles.вільних}>Вільних</Text>
-            <View style={styles.rect8f}></View>
+            <View style={styles.rect8f}><Text style={styles.FlatListloremIpsumf}>{item.FreeSeats}</Text></View>
           </View>
           <View style={styles.rect10Row}>
-            <View style={styles.rect10f}></View>
-            <View style={styles.rect9f}></View>
-          </View>
+          <TouchableOpacity style={styles.button33}>
+                      <View style={styles.rect10f}>
+                          <Text style={styles.FlatListButton}>Закінчити поїздку</Text>
+                      </View>
+                  </TouchableOpacity>
+                  <TouchableOpacity style={styles.button33}>
+                      <View style={styles.rect9f}>
+                          <Text style={styles.FlatListButton}>Поставити рейтинг</Text>
+                      </View>
+                  </TouchableOpacity>
+              </View>
         </View>
       );
     
     useEffect(() => {
       loadImage();
+      loadSelectedLocation();
     }, []);
   
     const loadImage = async () => {
@@ -77,17 +98,49 @@ const Untitled5 = (props) => {
         console.log('Error loading image from storage:', error);
       }
     };
-  
+    const loadSelectedLocation = async () => {
+        try {
+          const storedLocation = await AsyncStorage.getItem('selectedLocation');
+          if (storedLocation) {
+            const { latitude, longitude } = JSON.parse(storedLocation);
+            setSelectedLocation({ latitude, longitude });
+          }
+        } catch (error) {
+          console.log('Помилка завантаження координат:', error);
+        }
+      };
+    
+      const openGoogleMaps = async () => {
+        const googleMapsUrl = 'https://www.google.com/maps';
+        Linking.openURL(googleMapsUrl);
+      
+        // Ожидание возврата из Google Maps
+        const event = await Linking.waitFor('url');
+      
+        // Разбор полученного URL-адреса для получения координат
+        const { latitude, longitude } = parseGoogleMapsUrl(event.url);
+      
+        // Виконайте геокодування для отримання адреси за координатами
+        try {
+          const response = await Geocoder.from(latitude, longitude);
+          const address = response.results[0].formatted_address;
+      
+          // Збереження адреси в состояние
+          setSelectedAddress(address);
+      
+          // Збереження адреси в AsyncStorage
+          try {
+            await AsyncStorage.setItem('selectedAddress', address);
+          } catch (error) {
+            console.log('Помилка збереження адреси:', error);
+          }
+        } catch (error) {
+          console.log('Помилка геокодування:', error);
+        }
+      };
+      
 
     
-    const saveImage = async (uri) => {
-      try {
-        await AsyncStorage.setItem(STORAGE_KEY, uri);
-        setImage(uri);
-      } catch (error) {
-        console.log('Error saving image to storage:', error);
-      }
-    };
   return (
     <View style={styles.container}>
      
@@ -136,8 +189,18 @@ const Untitled5 = (props) => {
             <View style={styles.rect21}>
                 <View style={styles.початковеМісцеRow}>
                     <Text style={styles.початковеМісце}>Початкове місце:</Text>
-                    <View style={styles.rect31}></View>
-                    <TouchableOpacity style={styles.button4}>
+                    <View style={styles.rect31}>
+
+                    <TextInput
+  style={styles.inputStyle}
+  value={selectedAddress}
+  onChangeText={setSelectedAddress}
+></TextInput>
+
+     
+
+                    </View>
+                    <TouchableOpacity style={styles.button4} onPress={openGoogleMaps}>
                         <View style={styles.rect61}>
                             <FeatherIcon name="map-pin" style={styles.icon}></FeatherIcon>
                         </View>
@@ -145,8 +208,16 @@ const Untitled5 = (props) => {
                 </View>
                 <View style={styles.кінцевеМісцеRow}>
                     <Text style={styles.кінцевеМісце}>Кінцеве місце:</Text>
-                    <View style={styles.rect51}></View>
-                    <TouchableOpacity style={styles.button3}>
+                    <View style={styles.rect51}>
+
+                    <TextInput
+  style={styles.inputStyle}
+  value={selectedAddress}
+  onChangeText={setSelectedAddress}
+></TextInput>
+
+                    </View>
+                    <TouchableOpacity style={styles.button3} onPress={openGoogleMaps}>
                         <View style={styles.rect71}>
                             <FeatherIcon name="map-pin" style={styles.icon1}></FeatherIcon>
                         </View>
@@ -154,7 +225,13 @@ const Untitled5 = (props) => {
                 </View>
                 <View style={styles.датаПодорожіRow}>
                       <Text style={styles.датаПодорожі}>Дата подорожі:</Text>
-                      <View style={styles.rect41}></View>
+                      <View style={styles.rect41}>
+                        
+                      <TextInput
+            style={styles.inputStyle}
+          ></TextInput>
+
+                      </View>
                       <TouchableOpacity style={styles.button2}>
                           <View style={styles.rect81}>
                               <EntypoIcon name="calendar" style={styles.icon2}></EntypoIcon>
@@ -193,6 +270,7 @@ const Untitled5 = (props) => {
 
           </View>
 
+      
       </View>
 
 
@@ -208,6 +286,36 @@ const styles = StyleSheet.create({
         height: 168,
         marginTop: 10,
         marginLeft: 8
+      },
+      FlatListButton: {
+        fontFamily: "roboto-regular",
+        color: "#121212",
+        height: 25,
+        width: 200,
+        fontSize: 14,
+        top: -2,
+        left: 2
+
+      },
+      map: {
+        ...StyleSheet.absoluteFillObject,
+      },
+      FlatListloremIpsumf: {
+        fontFamily: "roboto-regular",
+        color: "#121212",
+        height: 17,
+        width: 85,
+        fontSize: 10,
+        top: -2,
+        left: 2
+
+      },
+      icon4: {
+        color: "rgba(128,128,128,1)",
+        fontSize: 30,
+        height: 0,
+        width: 0,
+        marginLeft: 5,
       },
     rect9f: {
         width: 134,
@@ -380,8 +488,18 @@ const styles = StyleSheet.create({
         color: "#121212",
         height: 17,
         width: 85,
-        marginTop: 8,
-        marginLeft: 39
+        marginTop: 6,
+        marginLeft: 20
+      },
+      DateTriploremIpsumf1: {
+        fontFamily: "roboto-regular",
+        color: "#121212",
+        height: 17,
+        width: 85,
+        fontSize: 10,
+        top: -1,
+        left: 2
+
       },
     iconf1: {
         color: "rgba(128,128,128,1)",
