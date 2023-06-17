@@ -1,5 +1,5 @@
 Arguments: 
-  C:\Program Files\nodejs\node.exe C:\Users\Yaroslav\AppData\Roaming\npm\node_modules\yarn\bin\yarn.js add react-native-intent-link
+  C:\Program Files\nodejs\node.exe C:\Users\Yaroslav\AppData\Roaming\npm\node_modules\yarn\bin\yarn.js add @react-native-community/geolocationyarn add react-native-geolocation-service
 
 PATH: 
   C:\Program Files\Common Files\Oracle\Java\javapath;C:\Python311\Scripts\;C:\Python311\;C:\jdk-17.0.6\bin;C:\Python310\Scripts\;C:\Python310\;C:\Program Files\Microsoft\jdk-17.0.1.12-hotspot\bin;C:\Python39\Scripts\;C:\Python39\;C:\Program Files (x86)\Common Files\Oracle\Java\javapath;C:\Windows\system32;C:\Windows;C:\Windows\System32\Wbem;C:\Windows\System32\WindowsPowerShell\v1.0\;C:\Windows\System32\OpenSSH\;C:\Program Files (x86)\NVIDIA Corporation\PhysX\Common;C:\Program Files\NVIDIA Corporation\NVIDIA NvDLISR;C:\Program Files\dotnet\;C:\Program Files\Microsoft SQL Server\130\Tools\Binn\;C:\Program Files\Microsoft SQL Server\Client SDK\ODBC\170\Tools\Binn\;C:\ProgramData\chocolatey\bin;C:\Program Files (x86)\dotnet\;C:\Program Files (x86)\Microsoft SQL Server\150\Tools\Binn\;C:\Program Files\Microsoft SQL Server\150\Tools\Binn\;C:\Program Files\Microsoft SQL Server\150\DTS\Binn\;C:\Program Files (x86)\Microsoft SQL Server\150\DTS\Binn\;C:\Program Files\Azure Data Studio\bin;C:\Program Files\nodejs\;C:\Program Files\Git\cmd;C:\Users\Yaroslav\AppData\Local\Microsoft\WindowsApps;C:\Users\Yaroslav\.dotnet\tools;C:\Users\Yaroslav\AppData\Local\Programs\Microsoft VS Code\bin;C:\Program Files\Azure Data Studio\bin;C:\Users\Yaroslav\AppData\Roaming\npm;C:\Users\Yaroslav\AppData\Local\Android\Sdk\platform-tools;C:\Program Files\JetBrains\WebStorm 2023.1.2\bin;;C:\Users\Yaroslav\AppData\Local\GitHubDesktop\bin
@@ -14,7 +14,7 @@ Platform:
   win32 x64
 
 Trace: 
-  Error: https://registry.yarnpkg.com/react-native-intent-link: Not found
+  Error: https://registry.yarnpkg.com/@react-native-community%2fgeolocationyarn: Not found
       at params.callback [as _callback] (C:\Users\Yaroslav\AppData\Roaming\npm\node_modules\yarn\lib\cli.js:66145:18)
       at self.callback (C:\Users\Yaroslav\AppData\Roaming\npm\node_modules\yarn\lib\cli.js:140890:22)
       at Request.emit (node:events:513:28)
@@ -41,6 +41,7 @@ npm manifest:
       "@fortawesome/fontawesome-svg-core": "^6.4.0",
       "@fortawesome/free-solid-svg-icons": "^6.4.0",
       "@react-native-async-storage/async-storage": "^1.18.1",
+      "@react-native-community/geolocation": "^3.0.6",
       "@react-native-community/masked-view": "^0.1.11",
       "@react-navigation/drawer": "^6.6.2",
       "@react-navigation/native": "^6.1.6",
@@ -56,6 +57,7 @@ npm manifest:
       "react-native": "0.71.8",
       "react-native-drawer-layout": "^3.2.0",
       "react-native-geocoding": "^0.5.0",
+      "react-native-geolocation-service": "^5.3.1",
       "react-native-gesture-handler": "~2.9.0",
       "react-native-google-maps-directions": "^2.1.1",
       "react-native-image-crop-picker": "^0.40.0",
@@ -1824,6 +1826,11 @@ Lockfile:
       graceful-fs "^4.1.3"
       prompts "^2.4.0"
       semver "^6.3.0"
+  
+  "@react-native-community/geolocation@^3.0.6":
+    version "3.0.6"
+    resolved "https://registry.yarnpkg.com/@react-native-community/geolocation/-/geolocation-3.0.6.tgz#e2c83c242f917ce5a494cedb161c37abd5f2a72a"
+    integrity sha512-+iidKFgw1HxCJSHVnlywAKu6uerdpDAKTXLRnlsUdhgqtgTiIixb496Z267iPVFmIO1bp4lOU6UiwzmvcyXdbg==
   
   "@react-native-community/masked-view@^0.1.11":
     version "0.1.11"
@@ -5815,6 +5822,11 @@ Lockfile:
     version "0.5.0"
     resolved "https://registry.yarnpkg.com/react-native-geocoding/-/react-native-geocoding-0.5.0.tgz#69748f896047a63d1c3c1d55255f9d67c8e275c2"
     integrity sha512-peTXRpRxPLiZpbTW43AOvoXXAEoS+eLnSo4KRY0hcL9F2hulWE5r7o5KiaLx8AWj35c6EJP3fdGHe754q2Gd2Q==
+  
+  react-native-geolocation-service@^5.3.1:
+    version "5.3.1"
+    resolved "https://registry.yarnpkg.com/react-native-geolocation-service/-/react-native-geolocation-service-5.3.1.tgz#4ce1017789da6fdfcf7576eb6f59435622af4289"
+    integrity sha512-LTXPtPNmrdhx+yeWG47sAaCgQc3nG1z+HLLHlhK/5YfOgfLcAb9HAkhREPjQKPZOUx8pKZMIpdGFUGfJYtimXQ==
   
   react-native-gesture-handler@~2.9.0:
     version "2.9.0"

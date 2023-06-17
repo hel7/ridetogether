@@ -9,9 +9,9 @@ import Geocoder from 'react-native-geocoding';
 import MapView, { PROVIDER_GOOGLE } from 'react-native-maps';
 import { GoogleMapsDirections } from 'react-native-google-maps-directions';
 import { Linking } from 'react-native';
-import { openInMaps } from 'react-native-intent-link';
-import MapView, { Marker } from 'react-native-maps';
-
+import { NavigationContainer } from '@react-navigation/native';
+import { useNavigation } from "@react-navigation/native";
+import Map from "./Map";
 Geocoder.init('AIzaSyAQB8GQ8I2EWwLsJHMbyb4So0BBkaYeOoc');
 const STORAGE_KEY = '@profile_image';
 
@@ -22,8 +22,8 @@ const STORAGE_KEY = '@profile_image';
 const Untitled5 = (props) => {
     const [image, setImage] = useState(null);
   const [selectedAddress, setSelectedAddress] = useState(null); // Оголошення та визначення змінної selectedAddress
-  const [selectedLocation, setSelectedLocation] = useState(null);
 
+ const navigation = useNavigation();
     const data = [
         { id: 1, DriverLogin: 'Lorem Ipsum 1', DateTrip: 'DD/MM/YYYY', StartPlase:'StartPlaseName', EndPlase:'EndPlaseName', Statis:'StatisStatis', Seats:'4', FreeSeats:'1'},
         { id: 2, DriverLogin: 'Lorem Ipsum 1', DateTrip: 'DD/MM/YYYY', StartPlase:'StartPlaseName', EndPlase:'EndPlaseName', Statis:'StatisStatis', Seats:'4', FreeSeats:'1'},
@@ -85,7 +85,7 @@ const Untitled5 = (props) => {
     
     useEffect(() => {
       loadImage();
-      loadSelectedLocation();
+
     }, []);
   
     const loadImage = async () => {
@@ -98,47 +98,7 @@ const Untitled5 = (props) => {
         console.log('Error loading image from storage:', error);
       }
     };
-    const loadSelectedLocation = async () => {
-        try {
-          const storedLocation = await AsyncStorage.getItem('selectedLocation');
-          if (storedLocation) {
-            const { latitude, longitude } = JSON.parse(storedLocation);
-            setSelectedLocation({ latitude, longitude });
-          }
-        } catch (error) {
-          console.log('Помилка завантаження координат:', error);
-        }
-      };
-    
-      const openGoogleMaps = async () => {
-        const googleMapsUrl = 'https://www.google.com/maps';
-        Linking.openURL(googleMapsUrl);
-      
-        // Ожидание возврата из Google Maps
-        const event = await Linking.waitFor('url');
-      
-        // Разбор полученного URL-адреса для получения координат
-        const { latitude, longitude } = parseGoogleMapsUrl(event.url);
-      
-        // Виконайте геокодування для отримання адреси за координатами
-        try {
-          const response = await Geocoder.from(latitude, longitude);
-          const address = response.results[0].formatted_address;
-      
-          // Збереження адреси в состояние
-          setSelectedAddress(address);
-      
-          // Збереження адреси в AsyncStorage
-          try {
-            await AsyncStorage.setItem('selectedAddress', address);
-          } catch (error) {
-            console.log('Помилка збереження адреси:', error);
-          }
-        } catch (error) {
-          console.log('Помилка геокодування:', error);
-        }
-      };
-      
+
 
     
   return (
@@ -193,14 +153,13 @@ const Untitled5 = (props) => {
 
                     <TextInput
   style={styles.inputStyle}
-  value={selectedAddress}
-  onChangeText={setSelectedAddress}
+
 ></TextInput>
 
      
 
                     </View>
-                    <TouchableOpacity style={styles.button4} onPress={openGoogleMaps}>
+                    <TouchableOpacity style={styles.button4} onPress={() => props.navigation.navigate("Map")}>
                         <View style={styles.rect61}>
                             <FeatherIcon name="map-pin" style={styles.icon}></FeatherIcon>
                         </View>
@@ -212,12 +171,11 @@ const Untitled5 = (props) => {
 
                     <TextInput
   style={styles.inputStyle}
-  value={selectedAddress}
-  onChangeText={setSelectedAddress}
+
 ></TextInput>
 
                     </View>
-                    <TouchableOpacity style={styles.button3} onPress={openGoogleMaps}>
+                    <TouchableOpacity style={styles.button3} onPress={() => props.navigation.navigate("Map")}>
                         <View style={styles.rect71}>
                             <FeatherIcon name="map-pin" style={styles.icon1}></FeatherIcon>
                         </View>

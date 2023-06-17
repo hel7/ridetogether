@@ -13,6 +13,7 @@ import Untitled4 from "./Untitled4";
 import Untitled5 from "./Untitled5";
 import CustomDrawerContent from "./CustomDrawerContent";
 import Untitled6 from "./Untitled6";
+import Map from "./Map";
 
 const Stack = createStackNavigator();
 const Drawer = createDrawerNavigator();
@@ -104,6 +105,7 @@ function App() {
         <Stack.Screen name="Untitled4" component={DrawerRoutes} options={{ headerShown: false }} />
         <Stack.Screen name="Untitled5" component={DrawerRoutes} options={{ headerShown: false }} />
         <Stack.Screen name="Untitled6" component={Untitled6}  />
+        <Stack.Screen name="Map" component={Map}  />
       </Stack.Navigator>
     </NavigationContainer>
   );
