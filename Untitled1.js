@@ -1,10 +1,21 @@
-import React, { Component } from "react";
+import React, { useEffect } from "react";
+import { Font } from 'expo-font';
 import { StyleSheet, View, Image, Text, TouchableOpacity } from "react-native";
 import MaterialDisabledTextbox from "./MaterialDisabledTextbox";
 import MaterialRightIconTextbox from "./MaterialRightIconTextbox";
-import * as Font from 'expo-font';
+
 
 function Untitled1(props) {
+  useEffect(() => {
+    async function loadFonts() {
+      await Font.loadAsync({
+        'roboto-700': require('./fonts/Roboto-Bold.ttf'),
+        'roboto-regular': require('./fonts/Roboto-Regular.ttf'),
+      });
+    }
+
+    loadFonts();
+  }, []);
   return (
     <View style={styles.container}> 
       <View style={styles.image1Row}>

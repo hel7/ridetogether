@@ -6,21 +6,33 @@ import { createDrawerNavigator } from "@react-navigation/drawer";
 import { createStackNavigator } from "@react-navigation/stack";
 import { NavigationContainer } from "@react-navigation/native";
 import Untitled1 from "./Untitled1";
-
+import { Font } from 'expo-font';
 import * as ImagePicker from 'expo-image-picker';
 import AsyncStorage from '@react-native-async-storage/async-storage';
+import { useFonts } from 'expo-font';
 
 const STORAGE_KEY = '@profile_image';
 
 const Drawer = createDrawerNavigator();
 
 function Untitled3(props) {
-  const [image, setImage] = useState(null);
+    const [image, setImage] = useState(null);
 
-  useEffect(() => {
-    loadImage();
-  }, []);
-
+    useEffect(() => {
+      loadImage();
+    }, []);
+  
+    useEffect(() => {
+      async function loadFonts() {
+        await Font.loadAsync({
+          'roboto-700': require('./fonts/Roboto-Bold.ttf'),
+          'roboto-regular': require('./fonts/Roboto-Regular.ttf'),
+          'Roboto-Medium': require('./fonts/Roboto-Medium.ttf'),
+        });
+      }
+  
+      loadFonts();
+    }, []);
   const loadImage = async () => {
     try {
       const storedImage = await AsyncStorage.getItem(STORAGE_KEY);
@@ -208,7 +220,7 @@ const styles = StyleSheet.create({
     rideTogether1: {
         top: -4,
         height: 50,
-        width: 137,
+        width: 140,
         fontFamily: "roboto-700",
         color: "rgba(255,255,255,1)",
         fontSize: 23,

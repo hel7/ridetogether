@@ -1,8 +1,8 @@
 import React, {useState,useEffect, Component } from "react"; 
 import { StyleSheet, View, Text, Image, TouchableOpacity } from "react-native";
 import MaterialRightIconTextbox from "./MaterialRightIconTextbox";
-
 import MaterialRightIconTextbox2 from "./MaterialRightIconTextbox 2";
+import { Font } from 'expo-font';
 import * as ImagePicker from 'expo-image-picker';
 import AsyncStorage from '@react-native-async-storage/async-storage';
 
@@ -14,7 +14,16 @@ function Untitled4(props) {
   useEffect(() => {
     loadImage();
   }, []);
+  useEffect(() => {
+    async function loadFonts() {
+      await Font.loadAsync({
+        'roboto-700': require('./fonts/Roboto-Bold.ttf'),
+        'roboto-regular': require('./fonts/Roboto-Regular.ttf'),
+      });
+    }
 
+    loadFonts();
+  }, []);
   const loadImage = async () => {
     try {
       const storedImage = await AsyncStorage.getItem(STORAGE_KEY);

@@ -1,7 +1,7 @@
 import React, { useEffect } from "react";
 import { StyleSheet, View, Text, Image, TouchableOpacity } from "react-native";
 import { useNavigation } from "@react-navigation/native";
-import { Font } from 'expo-font';
+import * as Font from "expo-font";
 import { createDrawerNavigator } from '@react-navigation/drawer';
 import { NavigationContainer } from '@react-navigation/native';
 import { createStackNavigator } from '@react-navigation/stack';
@@ -85,8 +85,8 @@ function Untitled(props) {
       </View>
       <Text style={styles.loremIpsum2}>Lorem Ipsum</Text>
     </View><View style={styles.group}>
-        <TouchableOpacity onPress={() => navigation.navigate("Untitled3")} style={styles.button}>
-          <Text style={styles.увійти}>Увійти</Text>
+        <TouchableOpacity onPress={() => navigation.navigate("Untitled3")} style={styles.button12}>
+          <Text style={styles.увійти1}>Увійти*</Text>
         </TouchableOpacity>
       </View></>
 
@@ -162,9 +162,23 @@ const styles = StyleSheet.create({
     backgroundColor: "rgba(0,122,255,1)",
     borderRadius: 5
   },
+  button12: {
+    width: 115,
+    height: 35,
+    backgroundColor: "rgba(187,27,247,100)",
+    borderRadius: 5
+  },
   увійти: {
     fontFamily: "roboto-regular",
     color: "rgba(255,255,255,1)",
+    textAlign: "center",
+    fontSize: 16,
+    marginTop: 7,
+    marginLeft: -1
+  },
+  увійти1: {
+    fontFamily: "roboto-regular",
+    color: "rgba(225,255,255,1)",
     textAlign: "center",
     fontSize: 16,
     marginTop: 7,

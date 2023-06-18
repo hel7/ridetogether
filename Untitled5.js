@@ -12,6 +12,7 @@ import { Linking } from 'react-native';
 import { NavigationContainer } from '@react-navigation/native';
 import { useNavigation } from "@react-navigation/native";
 import Map from "./Map";
+import { Font } from 'expo';
 Geocoder.init('AIzaSyAQB8GQ8I2EWwLsJHMbyb4So0BBkaYeOoc');
 const STORAGE_KEY = '@profile_image';
 
@@ -20,6 +21,18 @@ const STORAGE_KEY = '@profile_image';
 
 
 const Untitled5 = (props) => {
+
+    useEffect(() => {
+        async function loadFonts() {
+          await Font.loadAsync({
+            'roboto-700': require('./fonts/Roboto-Bold.ttf'),
+            'roboto-regular': require('./fonts/Roboto-Regular.ttf'),
+          });
+        }
+    
+        loadFonts();
+      }, []);
+
     const [image, setImage] = useState(null);
   const [selectedAddress, setSelectedAddress] = useState(null); // Оголошення та визначення змінної selectedAddress
 
@@ -701,7 +714,8 @@ const styles = StyleSheet.create({
     rideTogether1: {
         top: -4,
         height: 50,
-        width: 137,
+        width: 140
+        ,
         fontFamily: "roboto-700",
         color: "rgba(255,255,255,1)",
         fontSize: 23,

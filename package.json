@@ -21,7 +21,7 @@
     "@react-navigation/stack": "^6.3.16",
     "comp": "^1.10.0",
     "expo": "~48.0.15",
-    "expo-font": "^11.1.1",
+    "expo-font": "~11.1.1",
     "expo-image-picker": "~14.1.1",
     "expo-status-bar": "~1.4.4",
     "lodash": "^4.17.21",
