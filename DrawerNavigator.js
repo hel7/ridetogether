@@ -15,10 +15,10 @@ const DrawerNavigator = () => {
     return (
       
       <Drawer.Navigator>
-         <Drawer.Screen name="Untitled" component={Untitled} />     
-         <Drawer.Screen name="Untitled1" component={Untitled1} />
-         <Drawer.Screen name="Untitled2" component={Untitled2} />
-        <Drawer.Screen name="Untitled3" component={Untitled3} />
+         <Drawer.Screen name="Головна" component={Untitled} />     
+         <Drawer.Screen name="Авторизація" component={Untitled1} />
+         <Drawer.Screen name="Регестрація" component={Untitled2} />
+        <Drawer.Screen name="Профіль" component={Untitled3} />
    
         
       </Drawer.Navigator>

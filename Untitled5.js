@@ -172,7 +172,7 @@ const Untitled5 = (props) => {
      
 
                     </View>
-                    <TouchableOpacity style={styles.button4} onPress={() => props.navigation.navigate("Map")}>
+                    <TouchableOpacity style={styles.button4} onPress={() => props.navigation.navigate("Мапа")}>
                         <View style={styles.rect61}>
                             <FeatherIcon name="map-pin" style={styles.icon}></FeatherIcon>
                         </View>
@@ -188,7 +188,7 @@ const Untitled5 = (props) => {
 ></TextInput>
 
                     </View>
-                    <TouchableOpacity style={styles.button3} onPress={() => props.navigation.navigate("Map")}>
+                    <TouchableOpacity style={styles.button3} onPress={() => props.navigation.navigate("Мапа")}>
                         <View style={styles.rect71}>
                             <FeatherIcon name="map-pin" style={styles.icon1}></FeatherIcon>
                         </View>

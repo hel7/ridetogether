@@ -48,7 +48,7 @@ function Untitled(props) {
           <View style={styles.groupColumn}>
             <View style={styles.group}>
               <TouchableOpacity
-                onPress={() => props.navigation.navigate("Untitled1")}
+                onPress={() => props.navigation.navigate("Авторизація")}
                 style={styles.button}
               >
                 <Text style={styles.увійти}>Увійти</Text>
@@ -56,7 +56,7 @@ function Untitled(props) {
             </View>
             <View style={styles.group2}>
               <TouchableOpacity
-                onPress={() => props.navigation.navigate("Untitled2")}
+                onPress={() => props.navigation.navigate("Регестрація")}
                 style={styles.button1}
               >
                 <Text style={styles.створитиАкаунт}>Створити акаунт</Text>
@@ -85,7 +85,7 @@ function Untitled(props) {
       </View>
       <Text style={styles.loremIpsum2}>Lorem Ipsum</Text>
     </View><View style={styles.group}>
-        <TouchableOpacity onPress={() => navigation.navigate("Untitled3")} style={styles.button12}>
+        <TouchableOpacity onPress={() => navigation.navigate("Профіль")} style={styles.button12}>
           <Text style={styles.увійти1}>Увійти*</Text>
         </TouchableOpacity>
       </View></>
@@ -98,14 +98,14 @@ function App() {
   return (
     <NavigationContainer>
       <Stack.Navigator>
-        <Stack.Screen name="Untitled" component={Untitled} />
-        <Stack.Screen name="Untitled1" component={Untitled1} />
-        <Stack.Screen name="Untitled2" component={Untitled2} />
-        <Stack.Screen name="Untitled3" component={DrawerRoutes} options={{ headerShown: false }} />
-        <Stack.Screen name="Untitled4" component={DrawerRoutes} options={{ headerShown: false }} />
-        <Stack.Screen name="Untitled5" component={DrawerRoutes} options={{ headerShown: false }} />
-        <Stack.Screen name="Untitled6" component={Untitled6}  />
-        <Stack.Screen name="Map" component={Map}  />
+        <Stack.Screen name="Головна" component={Untitled} />
+        <Stack.Screen name="Авторизація" component={Untitled1} />
+        <Stack.Screen name="Регестрація" component={Untitled2} />
+        <Stack.Screen name="Профіль" component={DrawerRoutes} options={{ headerShown: false }} />
+        <Stack.Screen name="Профіль користувача" component={DrawerRoutes} options={{ headerShown: false }} />
+        <Stack.Screen name="Пошук водія" component={DrawerRoutes} options={{ headerShown: false }} />
+        <Stack.Screen name="Створення поїздки" component={Untitled6}  />
+        <Stack.Screen name="Мапа" component={Map}  />
       </Stack.Navigator>
     </NavigationContainer>
   );
@@ -114,10 +114,10 @@ function App() {
 
 function DrawerRoutes() {
   return (
-    <Drawer.Navigator drawerContent={props => <CustomDrawerContent {...props} />} initialRouteName="Untitled3" >
-      <Drawer.Screen name="Untitled3" component={Untitled3} />
-      <Drawer.Screen name="Untitled4" component={Untitled4} />
-      <Drawer.Screen name="Untitled5" component={Untitled5} />
+    <Drawer.Navigator drawerContent={props => <CustomDrawerContent {...props} />} initialRouteName="Профіль" >
+      <Drawer.Screen name="Профіль" component={Untitled3} />
+      <Drawer.Screen name="Профіль користувача" component={Untitled4} />
+      <Drawer.Screen name="Пошук водія" component={Untitled5} />
     </Drawer.Navigator>
   );
 }

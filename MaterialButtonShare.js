@@ -7,7 +7,7 @@ function MaterialButtonShare(props) {
   const navigation = useNavigation();
 
   const handleButtonPress = () => {
-    navigation.navigate("Untitled6");
+    navigation.navigate("Створення поїздки");
   };
 
   return (
