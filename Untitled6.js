@@ -207,7 +207,7 @@ const styles = StyleSheet.create({
   rideTogether1: {
     top: -4,
     height: 50,
-    width: 137,
+    width: 140,
     fontFamily: "roboto-700",
     color: "rgba(255,255,255,1)",
     fontSize: 23,
